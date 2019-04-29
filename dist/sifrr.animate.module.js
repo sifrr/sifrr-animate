@@ -137,17 +137,18 @@ function animate({
 module.export = animate;
 });
 
-animate_1.types = types;
 var sifrrAnimate = {
   animate: animate_1,
+  types,
   wait: function(time = 0) {
     return new Promise(res => setTimeout(res, time));
   }
 };
 var sifrrAnimate_1 = sifrrAnimate.animate;
-var sifrrAnimate_2 = sifrrAnimate.wait;
+var sifrrAnimate_2 = sifrrAnimate.types;
+var sifrrAnimate_3 = sifrrAnimate.wait;
 
 export default sifrrAnimate;
-export { sifrrAnimate_1 as animate, sifrrAnimate_2 as wait };
+export { sifrrAnimate_1 as animate, sifrrAnimate_2 as types, sifrrAnimate_3 as wait };
 /*! (c) @aadityataparia */
 //# sourceMappingURL=sifrr.animate.module.js.map

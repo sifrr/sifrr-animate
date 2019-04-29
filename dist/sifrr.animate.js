@@ -148,19 +148,21 @@
 	  module.export = animate;
 	});
 
-	animate_1.types = types;
 	var sifrrAnimate = {
 	  animate: animate_1,
+	  types,
 	  wait: function (time = 0) {
 	    return new Promise(res => setTimeout(res, time));
 	  }
 	};
 	var sifrrAnimate_1 = sifrrAnimate.animate;
-	var sifrrAnimate_2 = sifrrAnimate.wait;
+	var sifrrAnimate_2 = sifrrAnimate.types;
+	var sifrrAnimate_3 = sifrrAnimate.wait;
 
 	exports.animate = sifrrAnimate_1;
 	exports.default = sifrrAnimate;
-	exports.wait = sifrrAnimate_2;
+	exports.types = sifrrAnimate_2;
+	exports.wait = sifrrAnimate_3;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
