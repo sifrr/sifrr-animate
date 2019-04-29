@@ -1,6 +1,6 @@
 # sifrr-animate
 
-~1kb library to Animate any mutable object properties using requestAnimationFrame with promise based API.
+~1kb library to Animate any mutable object properties using requestAnimationFrame with promise based API. Alternative to [anime.js](https://github.com/juliangarnier/anime) for basic animations.
 
 **Note**: Since it uses requestAnimationFrame, actual time taken to animate can vary +-1 frame (~17ms)
 
@@ -58,4 +58,3 @@ Property's current/from value and to value should be of same format.
     -   '123s'
     -   'abcd 1234 fed 45'
     -   'aaaaaa123aaaa123aaaaaa123aaaaaa'
-
