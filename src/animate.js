@@ -1,3 +1,5 @@
+const animateOne = require('./animateone');
+
 function animate({
   targets,
   target,
@@ -34,8 +36,4 @@ function animate({
   return Promise.all(targets.map(target => iterate(target, to)));
 }
 
-animate.types = types;
-
-function wait(time = 0) {
-  return new Promise(res => setTimeout(res, time));
-}
+module.export = animate;

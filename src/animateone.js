@@ -1,3 +1,5 @@
+const Bezier = require('./bezier');
+const types = require('./types');
 const digitRgx = /(\d+)/;
 
 function animateOne({
