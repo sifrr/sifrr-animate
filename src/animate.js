@@ -8,7 +8,7 @@ function animate({
   type,
   onUpdate,
   round
-} = {}) {
+}) {
   targets = targets ? Array.from(targets) : [target];
   function iterate(target, props) {
     const promises = [];
@@ -37,9 +37,8 @@ function animate({
 }
 
 animate.types = require('./types');
-animate.wait = function(time = 0) {
-  return new Promise(res => setTimeout(res, time));
-};
+/* istanbul ignore next */
+animate.wait = (t = 0) => new Promise(res => setTimeout(res, t));
 animate.animate = animate;
 
 module.exports = animate;

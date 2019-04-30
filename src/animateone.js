@@ -11,7 +11,7 @@ function animateOne({
   type = 'ease',
   onUpdate,
   round = false
-} = {}) {
+}) {
   const toSplit = to.toString().split(digitRgx), l = toSplit.length, raw = [], fromNums = [], diffs = [];
   const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
   const onUp = typeof onUpdate === 'function';

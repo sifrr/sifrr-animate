@@ -58,7 +58,7 @@ function animateOne({
   type = 'ease',
   onUpdate,
   round = false
-} = {}) {
+}) {
   const toSplit = to.toString().split(digitRgx), l = toSplit.length, raw = [], fromNums = [], diffs = [];
   const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
   const onUp = typeof onUpdate === 'function';
@@ -102,7 +102,7 @@ function animate({
   type,
   onUpdate,
   round
-} = {}) {
+}) {
   targets = targets ? Array.from(targets) : [target];
   function iterate(target, props) {
     const promises = [];
@@ -130,9 +130,7 @@ function animate({
   return Promise.all(targets.map(target => iterate(target, to)));
 }
 animate.types = types;
-animate.wait = function(time = 0) {
-  return new Promise(res => setTimeout(res, time));
-};
+animate.wait = (t = 0) => new Promise(res => setTimeout(res, t));
 animate.animate = animate;
 var animate_1 = animate;
 
