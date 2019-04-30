@@ -42,11 +42,11 @@ wait(1000 /* in ms */).then(() => {
 ```
 
 -   `target(s)` - object(s) whose properties you want to animate, target is single object, targets is array of object
--   `to` - properties with final values to want to animate to
+-   `to` - properties with final values you want to animate to
 -   `time` - time taken to animate
 -   `type` - type of animation (pre added: \['linear', 'ease', 'easeIn', 'easeOut', 'easeInOut'])
--   `round` - round animated values or not
--   `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`
+-   `round` - round off animated values or not
+-   `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`, doing heavy lifting here can cause laggy animation
 
 If from values are not given (or object doesn't have that property), they will start from 0.
 
