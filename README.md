@@ -1,4 +1,4 @@
-<h1 align="center"> sifrr-elements </h1>
+# sifrr-animate · [![npm version](https://img.shields.io/npm/v/@sifrr/animate.svg)](https://www.npmjs.com/package/@sifrr/animate)
 <p align="center">
   <a href="https://github.com/sifrr/sifrr-animate/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license" /></a>
   <a href="https://circleci.com/gh/sifrr/sifrr-animate"><img alt="CircleCI" src="https://img.shields.io/circleci/project/github/sifrr/sifrr-animate/master.svg?logo=circleci&style=flat-square" /></a>
