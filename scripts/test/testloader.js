@@ -5,7 +5,6 @@ module.exports = async (relativeDir, mocha, { runUnitTests, runBrowserTests }, f
   const dir = path.join(__dirname, '../../', relativeDir);
   const unitTestDir = path.join(dir, './test/unit');
   const browserTestDir = path.join(dir, './test/browser');
-  const pkg = require(path.join(dir, './package.json'));
 
   // load test files
   if ((runUnitTests || !runBrowserTests) && fs.existsSync(unitTestDir)) {

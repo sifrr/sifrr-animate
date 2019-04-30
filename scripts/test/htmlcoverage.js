@@ -4,12 +4,10 @@ const fs = require('fs'),
   path = require('path'),
   cov = require('istanbul-lib-coverage'),
   srcmap = require('istanbul-lib-source-maps'),
-  { createInstrumenter } = require('istanbul-lib-instrument'),
   loadDir = require('./loaddir'),
   reporter = require('istanbul-api').createReporter();
 
 let map = cov.createCoverageMap();
-const instrumenter = createInstrumenter();
 const sm = srcmap.createSourceMapStore({});
 const nycReport = path.join(__dirname, '../../.nyc_output');
 
@@ -39,7 +37,7 @@ if (fs.existsSync(nycReport)) {
   });
 
   // Add Other files without coverage
-  loadDir(path.join(__dirname, '../../elements'), (file) => {
+  loadDir(path.join(__dirname, '../../'), (file) => {
     if (file.match(/sifrr-[a-z-]+\/src\/.*\.js$/)) {
       if (!map.data[file]) {
         // const content = fs.readFileSync(file).toString();
