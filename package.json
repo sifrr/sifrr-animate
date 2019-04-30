@@ -28,6 +28,7 @@
     "firefox >= 63"
   ],
   "scripts": {
+    "test": "rm -rf ./.nyc_output; node ./scripts/test/run.js ./",
     "build": "./node_modules/.bin/rollup -c"
   },
   "devDependencies": {
