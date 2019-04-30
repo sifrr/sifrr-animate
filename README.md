@@ -1,4 +1,5 @@
 # sifrr-animate · [![npm version](https://img.shields.io/npm/v/@sifrr/animate.svg)](https://www.npmjs.com/package/@sifrr/animate)
+
 <p align="center">
   <a href="https://github.com/sifrr/sifrr-animate/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license" /></a>
   <a href="https://circleci.com/gh/sifrr/sifrr-animate"><img alt="CircleCI" src="https://img.shields.io/circleci/project/github/sifrr/sifrr-animate/master.svg?logo=circleci&style=flat-square" /></a>
@@ -71,6 +72,21 @@ Property's current/from value and to value should be of same format.
     -   '123s'
     -   'abcd 1234 fed 45'
     -   'aaaaaa123aaaa123aaaaaa123aaaaaa'
+
+## Standalone files
+
+```html
+<script src="https://unpkg.com/@sifrr/animate@{version}/dist/sifrr.animate.min.js"></script>
+// for v0.0.3, version = 0.0.3
+```
+
+then use
+
+```js
+Sifrr.animate({...});
+Sifrr.animate.wait(100);
+Sifrr.animate.types;
+```
 
 ## Examples
 
