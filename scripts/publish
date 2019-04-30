@@ -2,9 +2,9 @@
 
 set -ex
 
-# ./scripts/checktag || exit 0
+./scripts/checktag || exit 0
 ./scripts/changelog
 git add misc/CHANGELOG.md
-# (git commit -m "chore: update changelog" && git push) || echo 'Changelog up to date'
-# ./scripts/release/tag
-# npm publish --access=public
+(git commit -m "chore: update changelog" && git push) || echo 'Changelog up to date'
+./scripts/release/tag
+npm publish --access=public

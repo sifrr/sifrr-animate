@@ -58,7 +58,7 @@ const { types } = require('@sifrr/elements');
 types['name'] = [.42, 0, .58, 1]; // bezier array
 ```
 
-type can also be a bezier array, function which takes x value between (0,1) and returns corresponding y value, and if x == 1, then y == 1.
+type can also be a bezier array, function which takes x value between (0,1) and returns corresponding y value.
 
 #### Format
 
