@@ -38,14 +38,21 @@
           "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
           "code": "<div>0</div>\n<div>0</div>",
           "elState": "// this = first element in given html\nSifrr.animate({\n  target: this,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: [0,1.4,.96,1.17],\n  time: 1000,\n  round: true\n});\nSifrr.animate({\n  target: this.nextElementSibling,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: i => 1.5 * i,\n  time: 1000,\n  round: true\n});\n"
+        },
+        {
+          "variantId": 6,
+          "variantName": "staggering",
+          "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+          "elState": "const children = this.children, l = children.length;\nfor (let i = 0; i < l; i++) {\n  Sifrr.animate.wait(i * 200).then(() => {\n    Sifrr.animate({\n      target: children[i],\n      to: {\n        style: {\n          transform: 'translateX(100px)'\n        },\n        textContent: 100\n      },\n      type: [0,1.4,.96,1.17],\n      time: 500,\n      round: true\n    });\n  })\n}"
         }
       ],
       "element": "sifrr-shimmer",
-      "code": "<div>0</div>\n<div>0</div>",
-      "variantId": 5,
-      "variantName": "custom cubic function",
-      "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
-      "elState": "// this = first element in given html\nSifrr.animate({\n  target: this,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: [0,1.4,.96,1.17],\n  time: 1000,\n  round: true\n});\nSifrr.animate({\n  target: this.nextElementSibling,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: i => 1.5 * i,\n  time: 1000,\n  round: true\n});\n"
+      "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+      "variantId": 6,
+      "variantName": "staggering",
+      "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+      "elState": "const children = this.children, l = children.length;\nfor (let i = 0; i < l; i++) {\n  Sifrr.animate.wait(i * 200).then(() => {\n    Sifrr.animate({\n      target: children[i],\n      to: {\n        style: {\n          transform: 'translateX(100px)'\n        },\n        textContent: 100\n      },\n      type: [0,1.4,.96,1.17],\n      time: 500,\n      round: true\n    });\n  })\n}"
     }
   ]
 }
