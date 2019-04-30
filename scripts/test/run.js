@@ -62,7 +62,7 @@ if (toCover) {
   const { createInstrumenter } = require('istanbul-lib-instrument');
   const instrumenter = createInstrumenter();
   const { hookRequire } = require('istanbul-lib-hook');
-  hookRequire((filePath) => filePath.match(/elements\/sifrr-[a-z-]+\/src/), (code, { filename }) => instrumenter.instrumentSync(code, filename));
+  hookRequire((filePath) => filePath.match(/\/sifrr-[a-z-]+\/src/), (code, { filename }) => instrumenter.instrumentSync(code, filename));
 }
 
 const nycReport = path.join(__dirname, '../../.nyc_output');

@@ -34,7 +34,7 @@ class Bezier {
     let t = xx;
     for (let i = 0; i < 4; ++i) {
       let slope = this.GetSlope(t, this.x1, this.x2);
-      if (slope == 0.0) return t;
+      if (slope == 0) return t;
       let x = this.CalcBezier(t, this.x1, this.x2) - xx;
       t -= x / slope;
     }
