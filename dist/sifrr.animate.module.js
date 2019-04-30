@@ -1,8 +1,4 @@
-/*! Sifrr.Animate v0.0.1 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
+/*! Sifrr.animate v0.0.1 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
 const beziers = {};
 class Bezier {
   constructor(args){
@@ -98,7 +94,6 @@ function animateOne({
 }
 var animateone = animateOne;
 
-var animate_1 = createCommonjsModule(function (module) {
 function animate({
   targets,
   target,
@@ -134,21 +129,13 @@ function animate({
   }
   return Promise.all(targets.map(target => iterate(target, to)));
 }
-module.export = animate;
-});
-
-var sifrrAnimate = {
-  animate: animate_1,
-  types,
-  wait: function(time = 0) {
-    return new Promise(res => setTimeout(res, time));
-  }
+animate.types = types;
+animate.wait = function(time = 0) {
+  return new Promise(res => setTimeout(res, time));
 };
-var sifrrAnimate_1 = sifrrAnimate.animate;
-var sifrrAnimate_2 = sifrrAnimate.types;
-var sifrrAnimate_3 = sifrrAnimate.wait;
+animate.animate = animate;
+var animate_1 = animate;
 
-export default sifrrAnimate;
-export { sifrrAnimate_1 as animate, sifrrAnimate_2 as types, sifrrAnimate_3 as wait };
+export default animate_1;
 /*! (c) @aadityataparia */
 //# sourceMappingURL=sifrr.animate.module.js.map

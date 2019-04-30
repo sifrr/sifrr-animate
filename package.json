@@ -29,6 +29,7 @@
   ],
   "scripts": {
     "test": "rm -rf ./.nyc_output; ./scripts/test/runall",
+    "test-server": "node ./scripts/test/run.js ./ -s",
     "build": "./node_modules/.bin/rollup -c"
   },
   "devDependencies": {

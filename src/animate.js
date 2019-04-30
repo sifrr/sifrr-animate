@@ -36,4 +36,10 @@ function animate({
   return Promise.all(targets.map(target => iterate(target, to)));
 }
 
-module.export = animate;
+animate.types = require('./types');
+animate.wait = function(time = 0) {
+  return new Promise(res => setTimeout(res, time));
+};
+animate.animate = animate;
+
+module.exports = animate;

@@ -14,7 +14,7 @@ function moduleConfig(name, root, min = false, isModule = false) {
   const filename = name.toLowerCase();
   const banner = `/*! ${name} v${version} - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */`;
   const ret = {
-    input: path.join(root, `./index.js`),
+    input: path.join(root, `./src/animate.js`),
     output: {
       file: path.join(root, `./dist/${filename + (isModule ? '.module' : '') + (min ? '.min' : '')}.js`),
       format: isModule ? 'es' : 'umd',
@@ -22,8 +22,7 @@ function moduleConfig(name, root, min = false, isModule = false) {
       banner: banner,
       footer: footer,
       sourcemap: !min,
-      preferConst: true,
-      exports: 'named'
+      preferConst: true
     },
     plugins: [
       resolve({
