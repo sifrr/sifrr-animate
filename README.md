@@ -71,3 +71,7 @@ Property's current/from value and to value should be of same format.
     -   '123s'
     -   'abcd 1234 fed 45'
     -   'aaaaaa123aaaa123aaaaaa123aaaaaa'
+
+## Examples
+
+<https://sifrr.github.io/sifrr-animate/showcase/>

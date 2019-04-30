@@ -1,0 +1,51 @@
+{
+  "current": 0,
+  "showcases": [
+    {
+      "name": "animate",
+      "variants": [
+        {
+          "variantId": 1,
+          "style": "#element > p {\n  padding: 10px;\n  background: white;\n}",
+          "code": "<p></p>",
+          "elState": "// this = first element in given html\nSifrr.animate({\n  target: this, \n  to: {\n    textContent: ['a 0 b 25 c 100', 'a 10 b 125 c 1017']\n  },\n  time: 1000,\n  round: true\n});",
+          "variantName": "animate text content"
+        },
+        {
+          "variantId": 2,
+          "variantName": "animate style",
+          "style": "#element > div {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div style=\"transform: translate(0px, 0px)\">move</div>",
+          "elState": "// this = first element in given html\nSifrr.animate({\n  target: this,\n  to: {\n    style: {\n      transform: 'translate(100px, 0px)'\n    }\n  },\n  time: 300,\n  type: 'easeOut'\n});"
+        },
+        {
+          "variantId": 3,
+          "variantName": "promise based",
+          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div style=\"transform: translate(50px, 0px);\">move</div>\n<p></p>",
+          "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut'\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
+        },
+        {
+          "variantId": 4,
+          "variantName": "multiple",
+          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div style=\"transform: translate(0px, 0px); width: 100px;\">move</div>\n<p style=\"transform: translate(50px, 0px); width: 100px;\"></p>",
+          "elState": "// this = first element in given html\nconst elements = Array.from(this.parentNode.children);\n\nSifrr.wait(1000).then(() => { // wait for 1 sec\nSifrr.animate({\n  targets: elements,\n  to: {\n    style: {\n      transform: 'translate(100px, 50px)',\n      width: '300px'\n    }\n  }\n});\n});\n\n"
+        },
+        {
+          "variantId": 5,
+          "variantName": "custom cubic function",
+          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div>0</div>\n<div>0</div>",
+          "elState": "// this = first element in given html\nSifrr.animate({\n  target: this,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: [0,1.4,.96,1.17],\n  time: 1000,\n  round: true\n});\nSifrr.animate({\n  target: this.nextElementSibling,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: i => 1.5 * i,\n  time: 1000,\n  round: true\n});\n"
+        }
+      ],
+      "element": "sifrr-shimmer",
+      "code": "<div>0</div>\n<div>0</div>",
+      "variantId": 5,
+      "variantName": "custom cubic function",
+      "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+      "elState": "// this = first element in given html\nSifrr.animate({\n  target: this,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: [0,1.4,.96,1.17],\n  time: 1000,\n  round: true\n});\nSifrr.animate({\n  target: this.nextElementSibling,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: i => 1.5 * i,\n  time: 1000,\n  round: true\n});\n"
+    }
+  ]
+}
