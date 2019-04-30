@@ -48,6 +48,8 @@ wait(1000 /* in ms */).then(() => {
 -   `round` - round animated values or not
 -   `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`
 
+If from values are not given (or object doesn't have that property), they will start from 0.
+
 You can add more types using bezier function values:
 
 ```js

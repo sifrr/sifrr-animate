@@ -37,7 +37,7 @@ function animate({
 }
 
 animate.types = require('./types');
-/* istanbul ignore next */
+/* istanbul ignore next: function */
 animate.wait = (t = 0) => new Promise(res => setTimeout(res, t));
 animate.animate = animate;
 
