@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Running changelog in $PWD"
+./node_modules/.bin/conventional-changelog -p angular -i "misc/CHANGELOG.md" -s "${@:1}"

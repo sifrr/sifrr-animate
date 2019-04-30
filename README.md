@@ -1,6 +1,15 @@
-# sifrr-animate
+<h1 align="center"> sifrr-elements </h1>
+<p align="center">
+  <a href="https://github.com/sifrr/sifrr-animate/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license" /></a>
+  <a href="https://circleci.com/gh/sifrr/sifrr-animate"><img alt="CircleCI" src="https://img.shields.io/circleci/project/github/sifrr/sifrr-animate/master.svg?logo=circleci&style=flat-square" /></a>
+  <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsifrr%2Fsifrr-animate?ref=badge_small" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsifrr%2Fsifrr-animate.svg?type=small"/></a>
+  <a href="https://coveralls.io/github/sifrr/sifrr-animate?branch=master"><img src="https://img.shields.io/coveralls/github/sifrr/sifrr-animate.svg?style=flat-square" alt="Coverage Status" /></a>
+  <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/sifrr/sifrr-animate.svg?style=flat-square" alt="Greenkeeper badge" /></a>
+</p>
 
-~1kb library to Animate any mutable object properties using requestAnimationFrame with promise based API. Alternative to [anime.js](https://github.com/juliangarnier/anime) for basic animations.
+> ~1kb library to Animate any mutable object properties using requestAnimationFrame with promise based API.
+
+Alternative to [anime.js](https://github.com/juliangarnier/anime) for basic animations.
 
 **Note**: Since it uses requestAnimationFrame, actual time taken to animate can vary +-1 frame (~17ms)
 
