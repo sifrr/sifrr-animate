@@ -37,6 +37,7 @@ animate({
 })
 
 // animate after waiting for 1 second
+// You can create very complex animations using wait, animate and loops
 wait(1000 /* in ms */).then(() => {
   animate({...});
 })
