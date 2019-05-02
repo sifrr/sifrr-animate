@@ -26,9 +26,8 @@ function animateOne({
   type = typeof type === 'function' ? type : new Bezier(types[type] || type);
 
   return new Promise(res => {
-    let startTime;
+    let startTime = performance.now();
     function frame(currentTime) {
-      startTime = startTime || currentTime;
       const percent = (currentTime - startTime) / time, bper = type(percent >= 1 ? 1 : percent);
       const next = diffs.map((d, i) => {
         if (round) return Math.round(bper * d + fromNums[i]);

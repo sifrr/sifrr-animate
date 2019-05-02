@@ -1,3 +1,5 @@
+const FRAME_TIME = 20;
+
 describe('animate', () => {
   before(async () => {
     await page.goto(`${PATH}/index.html`);
@@ -18,7 +20,7 @@ describe('animate', () => {
       return { i, target };
     });
 
-    expect(i).to.be.at.least(300/30);
+    expect(i).to.be.at.least(300/FRAME_TIME);
     expect(target).to.deep.equal({ a: 100 });
   });
 
@@ -38,7 +40,7 @@ describe('animate', () => {
       return { i, target };
     });
 
-    expect(i).to.be.at.least(100/30);
+    expect(i).to.be.at.least(100/FRAME_TIME);
     expect(target).to.deep.equal({ a: 100 });
   });
 
@@ -51,7 +53,7 @@ describe('animate', () => {
       await animate({
         target,
         to: {
-          a: [100, 500]
+          a: [1000, 1100]
         },
         time: 100,
         onUpdate
@@ -60,9 +62,9 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/30);
-    expect(calls[0]).to.equal(100);
-    expect(calls[calls.length - 1]).to.equal(500);
+    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls[0]).to.be.at.least(1000);
+    expect(calls[calls.length - 1]).to.equal(1100);
   });
 
   it('works with string', async () => {
@@ -85,13 +87,13 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/30);
-    expect(calls[0]).to.equal('acd10bcc100');
+    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls[0]).to.not.equal('acd15bcc159');
     expect(calls[calls.length - 1]).to.equal('acd15bcc159');
 
-    const callBreak = calls[1].split(/(\d+)/);
-    expect(Number(callBreak[1])).to.be.at.least(11);
-    expect(Number(callBreak[3])).to.be.at.least(101);
+    const callBreak = calls[0].split(/(\d+)/);
+    expect(Number(callBreak[1])).to.be.at.least(10);
+    expect(Number(callBreak[3])).to.be.at.least(100);
   });
 
   it('works with string, no from value', async () => {
@@ -113,13 +115,13 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/30);
-    expect(calls[0]).to.equal('acd0bcc0');
+    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls[0]).to.not.equal('acd15bcc159');
     expect(calls[calls.length - 1]).to.equal('acd15bcc159');
 
-    const callBreak = calls[1].split(/(\d+)/);
-    expect(Number(callBreak[1])).to.be.at.least(1);
-    expect(Number(callBreak[3])).to.be.at.least(1);
+    const callBreak = calls[0].split(/(\d+)/);
+    expect(Number(callBreak[1])).to.be.at.least(0);
+    expect(Number(callBreak[3])).to.be.at.least(0);
   });
 
   it('rounds off', async () => {
@@ -141,7 +143,7 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/30);
+    expect(calls.length).to.be.at.least(100/FRAME_TIME);
     expect(calls[1].toString().indexOf('.')).to.equal(-1);
   });
 
