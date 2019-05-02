@@ -12,10 +12,7 @@ class Bezier {
 
   setProps(x1, y1, x2, y2) {
     let props = {
-      x1: x1,
-      y1: y1,
-      x2: x2,
-      y2: y2,
+      x1, y1, x2, y2,
       A: (aA1, aA2) => 1.0 - 3.0 * aA2 + 3.0 * aA1,
       B: (aA1, aA2) => 3.0 * aA2 - 6.0 * aA1,
       C: (aA1) => 3.0 * aA1,

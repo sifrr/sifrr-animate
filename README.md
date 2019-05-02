@@ -10,9 +10,9 @@
 
 > ~1kb library to Animate any mutable object properties using requestAnimationFrame with promise based API.
 
-Alternative to [anime.js](https://github.com/juliangarnier/anime) for basic animations.
+This is a basic level library, which can be used to create complex animations as well like [anime.js](https://github.com/juliangarnier/anime)
 
-**Note**: Since it uses requestAnimationFrame, actual time taken to animate can vary +-1 frame (~17ms)
+**Note**: Since it uses requestAnimationFrame, actual time taken to animate can vary +1 frame (~17ms for 60fps)
 
 ```js
 const { animate, wait } = require('@sifrr/elements');
@@ -64,7 +64,7 @@ type can also be a bezier array, function which takes x value between (0,1) and 
 
 #### Format
 
-Property's current/from value and to value should be of same format.
+Property's current/from value and to value should be of same format (strings around numbers should de same).
 
 -   Number
 -   string with multiple numbers to animate, examples:
