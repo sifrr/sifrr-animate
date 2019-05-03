@@ -54,7 +54,7 @@
     easeInOut: [.42, 0, .58, 1]
   };
 
-  const digitRgx = /(\d+)/;
+  const digitRgx = /(\d+\.?\d*)/;
   function animateOne({
     target,
     prop,
