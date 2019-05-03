@@ -5,8 +5,6 @@ const terser = require('rollup-plugin-terser').terser;
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const cleanup = require('rollup-plugin-cleanup');
-const postcss = require('rollup-plugin-postcss');
-const html = require('rollup-plugin-html');
 
 const footer = '/*! (c) @aadityataparia */';
 
@@ -29,24 +27,7 @@ function moduleConfig(name, root, min = false, isModule = false) {
         browser: !isModule,
         mainFields: ['module', 'main']
       }),
-      commonjs(),
-      postcss({
-        extensions: ['.css', '.scss', '.sass', '.less'],
-        inject: false,
-        plugins: [
-          min ? require('cssnano')({
-            preset: [ 'default', { discardComments: false } ],
-          }) : false
-        ].filter(k => k)
-      }),
-      html({
-        htmlMinifierOptions: min ? {
-          collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          conservativeCollapse: true,
-          minifyJS: true
-        } : {}
-      })
+      commonjs()
     ]
   };
 
