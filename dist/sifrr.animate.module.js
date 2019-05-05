@@ -73,8 +73,8 @@ function animateOne({
     function frame(currentTime) {
       const percent = (currentTime - startTime) / time, bper = type(percent >= 1 ? 1 : percent);
       const next = diffs.map((d, i) => {
-        if (round) return Math.round(bper * d + fromNums[i]);
-        return bper * d + (fromNums[i] || 0);
+        const next = bper * d + fromNums[i];
+        return round ? Math.round(next) : next;
       });
       const val = String.raw({ raw }, ...next);
       target[prop] = Number(val) || val;
