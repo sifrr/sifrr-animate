@@ -54,6 +54,8 @@
     easeInOut: [.42, 0, .58, 1]
   };
 
+  var wait = (t = 0) => new Promise(res => setTimeout(res, t));
+
   const digitRgx = /(\d+\.?\d*)/;
   function animateOne({
     target,
@@ -63,7 +65,8 @@
     time = 300,
     type = 'ease',
     onUpdate,
-    round = false
+    round = false,
+    delay = 0
   }) {
     const toSplit = to.toString().split(digitRgx),
           l = toSplit.length,
@@ -80,7 +83,7 @@
       }
     }
     type = typeof type === 'function' ? type : new bezier(types[type] || type);
-    return new Promise(res => {
+    return wait(delay).then(() => new Promise(res => {
       let startTime = performance.now();
       function frame(currentTime) {
         const percent = (currentTime - startTime) / time,
@@ -98,7 +101,7 @@
         window.requestAnimationFrame(frame);
       }
       window.requestAnimationFrame(frame);
-    });
+    }));
   }
   var animateone = animateOne;
 
@@ -109,16 +112,19 @@
     time,
     type,
     onUpdate,
-    round
+    round,
+    delay
   }) {
     targets = targets ? Array.from(targets) : [target];
-    function iterate(t, props) {
+    let numDelay = delay;
+    function iterate(t, props, index) {
+      if (typeof delay === 'function') numDelay = delay(index);
       const promises = [];
       for (let prop in props) {
         let from, final;
         if (Array.isArray(props[prop])) [from, final] = props[prop];else final = props[prop];
         if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
-          promises.push(iterate(t[prop], props[prop]));
+          promises.push(iterate(t[prop], props[prop], index));
         } else {
           promises.push(animateone({
             target: t,
@@ -128,16 +134,17 @@
             type,
             from,
             onUpdate,
-            round
+            round,
+            delay: numDelay
           }));
         }
       }
       return Promise.all(promises);
     }
-    return Promise.all(targets.map(target => iterate(target, to)));
+    return Promise.all(targets.map((target, i) => iterate(target, to, i)));
   }
   animate.types = types;
-  animate.wait = (t = 0) => new Promise(res => setTimeout(res, t));
+  animate.wait = wait;
   animate.animate = animate;
   var animate_1 = animate;
 

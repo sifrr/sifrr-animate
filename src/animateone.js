@@ -1,5 +1,6 @@
 const Bezier = require('./bezier');
 const types = require('./types');
+const wait = require('./wait');
 const digitRgx = /(\d+\.?\d*)/;
 
 function animateOne({
@@ -10,7 +11,8 @@ function animateOne({
   time = 300,
   type = 'ease',
   onUpdate,
-  round = false
+  round = false,
+  delay = 0 // number
 }) {
   const toSplit = to.toString().split(digitRgx), l = toSplit.length, raw = [], fromNums = [], diffs = [];
   const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
@@ -25,7 +27,7 @@ function animateOne({
   }
   type = typeof type === 'function' ? type : new Bezier(types[type] || type);
 
-  return new Promise(res => {
+  return wait(delay).then(() => new Promise(res => {
     let startTime = performance.now();
     function frame(currentTime) {
       const percent = (currentTime - startTime) / time, bper = type(percent >= 1 ? 1 : percent);
@@ -40,7 +42,7 @@ function animateOne({
       window.requestAnimationFrame(frame);
     }
     window.requestAnimationFrame(frame);
-  });
+  }));
 }
 
 module.exports = animateOne;
