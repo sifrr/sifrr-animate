@@ -1,5 +1,5 @@
 {
-  "current": 1,
+  "current": 0,
   "showcases": [
     {
       "name": "animate",
@@ -26,11 +26,18 @@
           "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut'\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
         },
         {
+          "variantId": 7,
+          "variantName": "delay",
+          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div style=\"transform: translate(50px, 0px);\">move</div>\n<p></p>",
+          "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut',\n  delay: 3000\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
+        },
+        {
           "variantId": 4,
           "variantName": "multiple",
           "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
           "code": "<div style=\"transform: translate(0px, 0px); width: 100px;\">move</div>\n<p style=\"transform: translate(50px, 0px); width: 100px;\"></p>",
-          "elState": "// this = first element in given html\nconst elements = Array.from(this.parentNode.children);\n\nSifrr.animate.wait(1000).then(() => { // wait for 1 sec\nSifrr.animate({\n  targets: elements,\n  to: {\n    style: {\n      transform: 'translate(100px, 50px)',\n      width: '300px'\n    }\n  }\n});\n});\n\n"
+          "elState": "// this = first element in given html\nconst elements = Array.from(this.parentNode.children);\n\nSifrr.animate({\n  targets: elements,\n  to: {\n    style: {\n      transform: 'translate(100px, 50px)',\n      width: '300px'\n    }\n  }\n});\n\n\n"
         },
         {
           "variantId": 5,
@@ -44,15 +51,29 @@
           "variantName": "staggering",
           "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
           "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
-          "elState": "const children = this.children, l = children.length;\nfor (let i = 0; i < l; i++) {\n  Sifrr.animate.wait(i * 200).then(() => {\n    Sifrr.animate({\n      target: children[i],\n      to: {\n        style: {\n          transform: 'translateX(100px)'\n        },\n        textContent: 100\n      },\n      type: [0,1.4,.96,1.17],\n      time: 500,\n      round: true\n    });\n  })\n}"
+          "elState": "const children = this.children;\n\nSifrr.animate({\n  targets: children,\n  to: {\n    style: {\n      transform: 'translateX(100px)'\n    },\n    textContent: 100\n  },\n  type: [0,1.4,.96,1.17],\n  time: 500,\n  round: true,\n  delay: i => i * 200\n});"
+        },
+        {
+          "variantId": 8,
+          "variantName": "wave",
+          "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
+          "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+          "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: {\n    style: {\n      transform: ['scale3d(1,1,1)', 'scale3d(2,2,2)']\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => {\n    return (i % 5) * 200\n  }\n});"
+        },
+        {
+          "variantId": 9,
+          "variantName": "ripple",
+          "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
+          "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+          "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: {\n    style: {\n      transform: ['scale3d(1,1,1)', 'scale3d(2,2,2)']\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => {\n    const x_c = Math.abs((i % 5) - 2);\n    const y_c = Math.abs(Math.floor(i / 5) - 2);\n    const max_c = Math.max(x_c, y_c);\n    return max_c * 200\n  }\n});"
         }
       ],
       "element": "sifrr-shimmer",
-      "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
-      "variantId": 6,
-      "variantName": "staggering",
-      "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
-      "elState": "const children = this.children, l = children.length;\nfor (let i = 0; i < l; i++) {\n  Sifrr.animate.wait(i * 200).then(() => {\n    Sifrr.animate({\n      target: children[i],\n      to: {\n        style: {\n          transform: 'translateX(100px)'\n        },\n        textContent: 100\n      },\n      type: [0,1.4,.96,1.17],\n      time: 500,\n      round: true\n    });\n  })\n}"
+      "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+      "variantId": 9,
+      "variantName": "ripple",
+      "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
+      "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: {\n    style: {\n      transform: ['scale3d(1,1,1)', 'scale3d(2,2,2)']\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => {\n    const x_c = Math.abs((i % 5) - 2);\n    const y_c = Math.abs(Math.floor(i / 5) - 2);\n    const max_c = Math.max(x_c, y_c);\n    return max_c * 200\n  }\n});"
     },
     {
       "name": "codepen examples",
