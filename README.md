@@ -51,7 +51,7 @@ wait(1000 /* in ms */).then(() => {
 -   `type` - type of animation (pre added: \['linear', 'ease', 'easeIn', 'easeOut', 'easeInOut'])
 -   `round` - round off animated values or not
 -   `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`, doing heavy lifting here can cause laggy animation
--   `delay` - number or function, delay before start of animation. If a function is given, it will be called with index of target animating (starting from 0) and return value will be used as delay
+-   `delay` - (in miliseconds) number or function, delay before start of animation. If a function is given, it will be called with index of target animating (starting from 0) and return value will be used as delay
 
 If from values are not given (or object doesn't have that property), they will start from 0.
 

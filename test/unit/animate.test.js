@@ -42,7 +42,8 @@ describe('animate', function() {
       type: 'ease',
       from: undefined,
       onUpdate: undefined,
-      round: true
+      round: true,
+      delay: undefined
     });
     expect(animateOne.args[1][0]).to.deep.equal({
       target: target['a'],
@@ -52,7 +53,8 @@ describe('animate', function() {
       type: 'ease',
       from: undefined,
       onUpdate: undefined,
-      round: true
+      round: true,
+      delay: undefined
     });
   });
 
@@ -78,7 +80,8 @@ describe('animate', function() {
       type: 'ease',
       from: 10,
       onUpdate: undefined,
-      round: true
+      round: true,
+      delay: undefined
     });
   });
 
@@ -103,7 +106,8 @@ describe('animate', function() {
         type: undefined,
         from: undefined,
         onUpdate: undefined,
-        round: undefined
+        round: undefined,
+        delay: undefined
       });
     });
   });
