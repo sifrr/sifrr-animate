@@ -116,15 +116,13 @@
     delay
   }) {
     targets = targets ? Array.from(targets) : [target];
-    let numDelay = delay;
-    function iterate(t, props, index) {
-      if (typeof delay === 'function') numDelay = delay(index);
+    function iterate(t, props, d) {
       const promises = [];
       for (let prop in props) {
         let from, final;
         if (Array.isArray(props[prop])) [from, final] = props[prop];else final = props[prop];
         if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
-          promises.push(iterate(t[prop], props[prop], index));
+          promises.push(iterate(t[prop], props[prop], d));
         } else {
           promises.push(animateone({
             target: t,
@@ -135,17 +133,18 @@
             from,
             onUpdate,
             round,
-            delay: numDelay
+            delay: d
           }));
         }
       }
       return Promise.all(promises);
     }
-    let numTo;
+    let numTo = to,
+        numDelay = delay;
     return Promise.all(targets.map((target, i) => {
-      numTo = to;
       if (typeof to === 'function') numTo = to(i);
-      return iterate(target, numTo, i);
+      if (typeof delay === 'function') numDelay = delay(i);
+      return iterate(target, numTo, numDelay);
     }));
   }
   animate.types = types;
