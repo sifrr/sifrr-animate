@@ -13,11 +13,11 @@ class Bezier {
   setProps(x1, y1, x2, y2) {
     let props = {
       x1, y1, x2, y2,
-      A: (aA1, aA2) => 1.0 - 3.0 * aA2 + 3.0 * aA1,
-      B: (aA1, aA2) => 3.0 * aA2 - 6.0 * aA1,
-      C: (aA1) => 3.0 * aA1,
-      CalcBezier: (aT, aA1, aA2) => ((this.A(aA1, aA2)*aT + this.B(aA1, aA2))*aT + this.C(aA1))*aT,
-      GetSlope: (aT, aA1, aA2) => 3.0 * this.A(aA1, aA2)*aT*aT + 2.0 * this.B(aA1, aA2) * aT + this.C(aA1)
+      A: (x1, x2) => 1.0 - 3.0 * x2 + 3.0 * x1,
+      B: (x1, x2) => 3.0 * x2 - 6.0 * x1,
+      C: (x1) => 3.0 * x1,
+      CalcBezier: (t, x1, x2) => ((this.A(x1, x2) * t + this.B(x1, x2)) * t + this.C(x1)) * t,
+      GetSlope: (t, x1, x2) => 3.0 * this.A(x1, x2) * t * t + 2.0 * this.B(x1, x2) * t + this.C(x1)
     };
     Object.assign(this, props);
   }
