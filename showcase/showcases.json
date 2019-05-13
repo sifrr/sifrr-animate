@@ -28,9 +28,9 @@
         {
           "variantId": 7,
           "variantName": "delay",
-          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 70px;\n}",
           "code": "<div style=\"transform: translate(50px, 0px);\">move</div>\n<p></p>",
-          "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut',\n  delay: 3000\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
+          "elState": "// this = first element in given html\n// this = first element in given html\nthis.nextElementSibling.textContent ='waiting';\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 1000,\n  type: 'easeOut',\n  delay: 3000,\n  onUpdate: () =>  this.nextElementSibling.textContent ='moving'\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
         },
         {
           "variantId": 4,
@@ -76,11 +76,11 @@
         }
       ],
       "element": "sifrr-shimmer",
-      "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
-      "variantId": 10,
-      "variantName": "to as function",
-      "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  height: 100px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
-      "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: (i) => {\n    return {\n      style: {\n        height: ['100px', (110 + i * 10) + 'px']\n      }\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => i * 50\n});"
+      "code": "<div style=\"transform: translate(50px, 0px);\">move</div>\n<p></p>",
+      "variantId": 7,
+      "variantName": "delay",
+      "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 70px;\n}",
+      "elState": "// this = first element in given html\n// this = first element in given html\nthis.nextElementSibling.textContent ='waiting';\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 1000,\n  type: 'easeOut',\n  delay: 3000,\n  onUpdate: () =>  this.nextElementSibling.textContent ='moving'\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
     },
     {
       "name": "codepen examples",

@@ -3,7 +3,7 @@ const animateOne = require('./animateone');
 function animate({
   targets,
   target,
-  to,
+  to, // object or function
   time,
   type,
   onUpdate,
@@ -46,7 +46,6 @@ function animate({
 }
 
 animate.types = require('./types');
-/* istanbul ignore next: function */
 animate.wait = require('./wait');
 animate.animate = animate;
 
