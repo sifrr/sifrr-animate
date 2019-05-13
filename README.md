@@ -8,11 +8,21 @@
   <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/sifrr/sifrr-animate.svg?style=flat-square" alt="Greenkeeper badge" /></a>
 </p>
 
-> ~1kb library to Animate any mutable object properties using requestAnimationFrame with promise based API.
+> ~1kb library to Animate any mutable object's properties using requestAnimationFrame with promise based API.
 
 This is a basic level library, which can be used to create complex animations as well like [anime.js](https://github.com/juliangarnier/anime)
 
 **Note**: Since it uses requestAnimationFrame, actual time taken to animate can vary +1 frame (~17ms for 60fps)
+
+## Size
+
+| Type                                         |                                                                                                                      Size                                                                                                                      |
+| :------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Normal (`dist/sifrr.animate.js`)                 |                    [![Normal](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.js)                   |
+| Minified (`dist/sifrr.animate.min.js`)           |               [![Minified](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js)              |
+| Minified + Gzipped (`dist/sifrr.animate.min.js`) | [![Minified + Gzipped](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?compression=gzip&maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js) |
+
+## Usage
 
 ```js
 const { animate, wait } = require('@sifrr/elements');
@@ -65,7 +75,7 @@ types['name'] = [.42, 0, .58, 1]; // bezier array
 
 type can also be a bezier array, function which takes x value between (0,1) and returns corresponding y value.
 
-#### Format
+### Format
 
 Property's current/from value and to value should be of same format (strings around numbers should de same).
 
