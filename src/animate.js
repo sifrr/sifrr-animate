@@ -37,7 +37,12 @@ function animate({
     }
     return Promise.all(promises);
   }
-  return Promise.all(targets.map((target, i) => iterate(target, to, i)));
+  let numTo;
+  return Promise.all(targets.map((target, i) => {
+    numTo = to;
+    if (typeof to === 'function') numTo = to(i);
+    return iterate(target, numTo, i);
+  }));
 }
 
 animate.types = require('./types');

@@ -66,14 +66,21 @@
           "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
           "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
           "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: {\n    style: {\n      transform: ['scale3d(1,1,1)', 'scale3d(2,2,2)']\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => {\n    const x_c = Math.abs((i % 5) - 2);\n    const y_c = Math.abs(Math.floor(i / 5) - 2);\n    const max_c = Math.max(x_c, y_c);\n    return max_c * 200\n  }\n});"
+        },
+        {
+          "variantId": 10,
+          "variantName": "to as function",
+          "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  height: 100px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
+          "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+          "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: (i) => {\n    return {\n      style: {\n        height: ['100px', (110 + i * 10) + 'px']\n      }\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => i * 50\n});"
         }
       ],
       "element": "sifrr-shimmer",
-      "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n<br>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
-      "variantId": 9,
-      "variantName": "ripple",
-      "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
-      "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: {\n    style: {\n      transform: ['scale3d(1,1,1)', 'scale3d(2,2,2)']\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => {\n    const x_c = Math.abs((i % 5) - 2);\n    const y_c = Math.abs(Math.floor(i / 5) - 2);\n    const max_c = Math.max(x_c, y_c);\n    return max_c * 200\n  }\n});"
+      "code": "<div id=\"parent\">\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n  <div>0</div>\n</div>",
+      "variantId": 10,
+      "variantName": "to as function",
+      "style": "#element > #parent * {\n  padding: 10px;\n  background: white;\n  width: 30px;\n  height: 100px;\n  font-size: 10px;\n  display: inline-block;\n  margin: 30px;\n}",
+      "elState": "const children = this.$$('div');\n\nSifrr.animate({\n  targets: children,\n  to: (i) => {\n    return {\n      style: {\n        height: ['100px', (110 + i * 10) + 'px']\n      }\n    }\n  },\n  type: 'ease',\n  time: 300,\n  delay: i => i * 50\n});"
     },
     {
       "name": "codepen examples",
