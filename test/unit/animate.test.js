@@ -111,4 +111,42 @@ describe('animate', function() {
       });
     });
   });
+
+  it('works with functions', async () => {
+    const target = {};
+    let ii, jj, kk;
+    animate({
+      target,
+      to: i => {
+        ii = i;
+        return {
+          a: 10
+        };
+      },
+      time: j => {
+        jj = j;
+        return 300;
+      },
+      delay: k => {
+        kk = k;
+        return 0;
+      }
+    });
+
+    expect(animateOne.callCount).to.equal(1);
+    expect(animateOne.args[0][0]).to.deep.equal({
+      target,
+      prop: 'a',
+      to: 10,
+      time: 300,
+      type: undefined,
+      from: undefined,
+      onUpdate: undefined,
+      round: undefined,
+      delay: 0
+    });
+    expect(ii).to.equal(0);
+    expect(jj).to.equal(0);
+    expect(kk).to.equal(0);
+  });
 });
