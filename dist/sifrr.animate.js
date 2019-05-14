@@ -54,7 +54,7 @@
     easeInOut: [.42, 0, .58, 1]
   };
 
-  var wait = (t = 0) => new Promise(res => setTimeout(res, t));
+  var wait = t => new Promise(res => setTimeout(res, t));
 
   const digitRgx = /(\d+\.?\d*)/;
   const frames = new Set();
