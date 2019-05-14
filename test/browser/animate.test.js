@@ -24,6 +24,31 @@ describe('animate', () => {
     expect(target).to.deep.equal({ a: 100 });
   });
 
+  it('works even if one animation errors', async () => {
+    const { i, target, error} = await page.evaluate(async () => {
+      let target = { a: 0 }, i = 0, onUpdate = () => i++, error;
+      await animate({
+        target: 'ok',
+        to: {
+          data: 100
+        }
+      }).catch(e => error = e);
+      await animate({
+        target,
+        to: {
+          a: 100
+        },
+        onUpdate
+      });
+
+      return { i, target, error };
+    });
+
+    expect(i).to.be.at.least(300/FRAME_TIME);
+    expect(target).to.deep.equal({ a: 100 });
+    expect(error).to.exist;
+  });
+
   it('works with single digit', async () => {
     const { i, target } = await page.evaluate(async () => {
       let i = 0, onUpdate = () => i++;

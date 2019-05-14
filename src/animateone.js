@@ -35,7 +35,7 @@ function animateOne({
   type = typeof type === 'function' ? type : new Bezier(types[type] || type);
   const rawObj = { raw };
 
-  return wait(delay).then(() => new Promise(resolve => {
+  return wait(delay).then(() => new Promise((resolve, reject) => {
     let startTime = performance.now();
     const frame = function(currentTime) {
       const percent = (currentTime - startTime) / time, bper = type(percent >= 1 ? 1 : percent);
@@ -44,9 +44,14 @@ function animateOne({
         return round ? Math.round(n) : n;
       });
       const val = String.raw(rawObj, ...next);
-      target[prop] = Number(val) || val;
-      if (onUp) onUpdate(target, prop, target[prop]);
-      if (percent >= 1) resolve(frames.delete(frame));
+      try {
+        target[prop] = Number(val) || val;
+        if (onUp) onUpdate(target, prop, target[prop]);
+        if (percent >= 1) resolve(frames.delete(frame));
+      } catch(e) {
+        frames.delete(frame);
+        reject(e);
+      }
     };
     frames.add(frame);
   }));
