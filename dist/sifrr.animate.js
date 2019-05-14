@@ -57,6 +57,12 @@
   var wait = (t = 0) => new Promise(res => setTimeout(res, t));
 
   const digitRgx = /(\d+\.?\d*)/;
+  const frames = new Set();
+  function runFrames(currentTime) {
+    frames.forEach(f => f(currentTime));
+    window.requestAnimationFrame(runFrames);
+  }
+  window.requestAnimationFrame(runFrames);
   function animateOne({
     target,
     prop,
@@ -83,24 +89,24 @@
       }
     }
     type = typeof type === 'function' ? type : new bezier(types[type] || type);
-    return wait(delay).then(() => new Promise(res => {
+    const rawObj = {
+      raw
+    };
+    return wait(delay).then(() => new Promise(resolve => {
       let startTime = performance.now();
-      function frame(currentTime) {
+      const frame = function (currentTime) {
         const percent = (currentTime - startTime) / time,
               bper = type(percent >= 1 ? 1 : percent);
         const next = diffs.map((d, i) => {
-          const next = bper * d + fromNums[i];
-          return round ? Math.round(next) : next;
+          const n = bper * d + fromNums[i];
+          return round ? Math.round(n) : n;
         });
-        const val = String.raw({
-          raw
-        }, ...next);
+        const val = String.raw(rawObj, ...next);
         target[prop] = Number(val) || val;
         if (onUp) onUpdate(target, prop, target[prop]);
-        if (percent >= 1) return res();
-        window.requestAnimationFrame(frame);
-      }
-      window.requestAnimationFrame(frame);
+        if (percent >= 1) resolve(frames.delete(frame));
+      };
+      frames.add(frame);
     }));
   }
   var animateone = animateOne;
