@@ -32,10 +32,13 @@ function animateOne({
       diffs.push(n - (Number(fromSplit[i]) || 0));
     }
   }
-  type = typeof type === 'function' ? type : new Bezier(types[type] || type);
-  const rawObj = { raw };
 
+  const rawObj = { raw };
   return wait(delay).then(() => new Promise((resolve, reject) => {
+    if (typeof type === 'string' && types[type]) type = new Bezier(types[type]);
+    else if (Array.isArray(type)) type = new Bezier(type);
+    else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
+
     let startTime = performance.now();
     const frame = function(currentTime) {
       const percent = (currentTime - startTime) / time, bper = type(percent >= 1 ? 1 : percent);
