@@ -78,7 +78,7 @@ function animateOne({
   }
   const rawObj = { raw };
   return wait(delay).then(() => new Promise((resolve, reject) => {
-    if (typeof type === 'string' && types[type]) type = new bezier(types[type]);
+    if (types[type]) type = new bezier(types[type]);
     else if (Array.isArray(type)) type = new bezier(type);
     else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
     let startTime = performance.now();
