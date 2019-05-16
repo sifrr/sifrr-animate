@@ -1,4 +1,9 @@
 class Animator {
+  // loop any function that return promise
+  static loop(fxn) {
+    fxn().then(() => this.loop(fxn));
+  }
+
   constructor() {
     this.promise = Promise.resolve(true);
   }
@@ -18,17 +23,28 @@ class Animator {
 
   // loops animation
   loop(opts) {
-    this.animate(opts).then(() => this.loop(opts));
+    this.constructor.loop(() => this.animate(opts));
+    return this;
   }
 
   // loops timeline
   loopTimeline(optsArray) {
-    this.timeline(optsArray).then(() => this.loopTimeline(optsArray));
+    this.constructor.loop(() => this.timeline(optsArray));
+    return this;
   }
 
   // runs animation but not in same timeline
   animate(opts) {
-    if (Array.isArray(opts)) return Promise.all(opts.map((o) => Sifrr.animate(o)));
+    if (Array.isArray(opts)) return Promise.all(opts.map((o) => {
+      if (Array.isArray(o)) {
+        let promise = Promise.resolve(true);
+        o.forEach(o1 => {
+          promise = promise.then(() => Sifrr.animate(o1));
+        });
+        return promise;
+      }
+      return Sifrr.animate(o);
+    }));
     return Sifrr.animate(opts);
   }
 
