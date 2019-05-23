@@ -1,4 +1,4 @@
-/*! Sifrr.animate v0.0.1 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
+/*! Sifrr.animate v0.0.2 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
 const beziers = {};
 class Bezier {
   constructor(args){
