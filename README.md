@@ -5,7 +5,7 @@
   <a href="https://circleci.com/gh/sifrr/sifrr-animate"><img alt="CircleCI" src="https://img.shields.io/circleci/project/github/sifrr/sifrr-animate/master.svg?logo=circleci&style=flat-square" /></a>
   <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsifrr%2Fsifrr-animate?ref=badge_small" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsifrr%2Fsifrr-animate.svg?type=small"/></a>
   <a href="https://coveralls.io/github/sifrr/sifrr-animate?branch=master"><img src="https://img.shields.io/coveralls/github/sifrr/sifrr-animate.svg?style=flat-square" alt="Coverage Status" /></a>
-  <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/sifrr/sifrr-animate.svg?style=flat-square" alt="Greenkeeper badge" /></a>
+  <a href="https://dependabot.com/"><img src="https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot" alt="Dependabot badge" /></a>
 </p>
 
 > ~1kb library to Animate any mutable object's properties using requestAnimationFrame with promise based API.
