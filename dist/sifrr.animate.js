@@ -1,4 +1,4 @@
-/*! Sifrr.animate v0.0.2 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
+/*! Sifrr.animate v0.0.1 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -154,9 +154,9 @@
         numDelay = delay,
         numTime = time;
     return Promise.all(targets.map((target, i) => {
-      if (typeof to === 'function') numTo = to(i);
-      if (typeof delay === 'function') numDelay = delay(i);
-      if (typeof time === 'function') numTime = time(i);
+      if (typeof to === 'function') numTo = to.call(target, i);
+      if (typeof delay === 'function') numDelay = delay.call(target, i);
+      if (typeof time === 'function') numTime = time.call(target, i);
       return iterate(target, numTo, numDelay, numTime);
     }));
   }

@@ -64,7 +64,7 @@ wait(1000 /* in ms */).then(() => {
 -   `delay` - (in miliseconds) number or function, delay before start of animation (in ms)
 
 If from values are not given (or object doesn't have that property), they will start from 0.
-If a function for `time`, `delay`, `to` is given, it will be called with index of target to animate (starting from 0) and return value will be used as corresponding value for that target.
+If a function for `time`, `delay`, `to` is given, it will be called with index of target to animate (starting from 0) and return value will be used as corresponding value for that target. `this` inside these functions is `target`.
 
 You can add more types using bezier function values:
 
