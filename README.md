@@ -38,11 +38,11 @@ animate({
       width: '100px'
     }
   },
-  time: 300,
-  type: 'ease',
-  round: false,
+  time: 300, // default = 300
+  type: 'spring', // default = 'spring' which is basically cosine curve
+  round: false, // default = false
   onUpdate: () => {},
-  delay: 1000 // animate after waiting for 1 second
+  delay: 1000 // animate after waiting for 1 second, default = 0
 }).then(() => {
   // do something after animation is complete
 })
@@ -58,7 +58,7 @@ wait(1000 /* in ms */).then(() => {
 -   `target(s)` - object(s) whose properties you want to animate, target is single object, targets is array of object
 -   `to` - properties with final values you want to animate to.
 -   `time` - time taken to animate (in ms)
--   `type` - type of animation (pre added: \['linear', 'ease', 'easeIn', 'easeOut', 'easeInOut']). type can also be a bezier array or function which takes x value between (0,1) and returns corresponding y value.
+-   `type` - type of animation (pre added: \['linear', 'ease', 'easeIn', 'easeOut', 'easeInOut', 'spring']). type can also be a bezier array or function which takes x value between (0,1) and returns corresponding y value.
 -   `round` - round off animated values or not
 -   `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`, doing heavy lifting here can cause laggy animation
 -   `delay` - (in miliseconds) number or function, delay before start of animation (in ms)
@@ -92,10 +92,10 @@ Property's current/from value and to value should be of same format (strings aro
 
 Relative `to`, `to` can be relative number as well
 
--   if from is `100px`, and to is `+=20`, then final value will be `120px`
--   if from is `100px`, and to is `-=20`, then final value will be `80px`
--   if from is `100px`, and to is `*=2`, then final value will be `200px`
--   if from is `100px`, and to is `/=5`, then final value will be `20px`
+-   if from is `100px`, and to is `+=20px`, then final value will be `120px`
+-   if from is `100px`, and to is `-=20px`, then final value will be `80px`
+-   if from is `100px`, and to is `*=2px`, then final value will be `200px`
+-   if from is `100px`, and to is `/=5px`, then final value will be `20px`
 
 ## Standalone files
 

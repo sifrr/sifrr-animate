@@ -1,7 +1,7 @@
 class Animator {
   // loop any function that return promise
   static loop(fxn) {
-    fxn().then(() => this.loop(fxn));
+    return fxn().then(() => this.loop(fxn));
   }
 
   constructor() {
@@ -23,14 +23,12 @@ class Animator {
 
   // loops animation
   loop(opts) {
-    this.constructor.loop(() => this.animate(opts));
-    return this;
+    return this.constructor.loop(() => this.animate(opts));
   }
 
   // loops timeline
   loopTimeline(optsArray) {
-    this.constructor.loop(() => this.timeline(optsArray));
-    return this;
+    return this.constructor.loop(() => this.timeline(optsArray));
   }
 
   // runs animation but not in same timeline

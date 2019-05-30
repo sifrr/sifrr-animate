@@ -100,8 +100,6 @@
           case '/':
             tn = fn / tn;
             break;
-          default:
-            tn = Number(toSplit[i]);
         }
       }
       if (isNaN(tn) || !toSplit[i]) raw.push(toSplit[i]);else {

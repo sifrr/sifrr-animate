@@ -1,5 +1,5 @@
 {
-  "current": 1,
+  "current": 0,
   "showcases": [
     {
       "name": "simple",
@@ -24,6 +24,13 @@
           "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
           "code": "<div style=\"transform: translate(50px, 0px);\">move</div>\n<p></p>",
           "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut'\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});"
+        },
+        {
+          "variantId": 13,
+          "variantName": "relative",
+          "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
+          "code": "<div style=\"transform: translate(500px, 0px);\">move</div>",
+          "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(+=100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut'\n});"
         },
         {
           "variantId": 7,
@@ -90,11 +97,11 @@
         }
       ],
       "element": "sifrr-shimmer",
-      "code": "<div style=\"transform: translate(50px, 0px);\">move</div>\n<p></p>",
-      "variantId": 3,
-      "variantName": "promise based",
+      "code": "<div style=\"transform: translate(500px, 0px);\">move</div>",
+      "variantId": 13,
+      "variantName": "relative",
       "style": "#element > * {\n  padding: 10px;\n  background: white;\n  width: 60px;\n}",
-      "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut'\n}).then(() => {\n  this.nextElementSibling.textContent ='moved';\n});",
+      "elState": "// this = first element in given html\n// this = first element in given html\nSifrr.animate({\n  target: this.style, \n  to: {\n    transform: 'translate(+=100px, 0px)'\n  },\n  time: 300,\n  type: 'easeOut'\n});",
       "current": 0
     },
     {
@@ -132,16 +139,16 @@
           "variantId": 5,
           "variantName": "spring loop",
           "style": "#point {\n  border-radius: 5px;\n  width: 10px;\n  height: 10px;\n  background-color: green;\n  z-index: 5;\n}\n",
-          "code": "<div id=\"point\" style=\"bottom: -5px; left: -5px;\"></div>\n",
-          "elState": "const animator = new Animator();\nanimator.loopTimeline([{\n  target: this.style,\n  to: {\n    transform: ['translateX(0px)', 'translateX(100px)']\n  }\n}, {\n  target: this.style,\n  to: {\n    transform: ['translateX(100px)', 'translateX(0px)']\n  }\n}])\n\nreturn {\n\n}"
+          "code": "<p id=\"point\" style=\"bottom: -5px; left: -5px; transform: translateX(0px)\"></p>\n",
+          "elState": "const animator = new Animator();\nanimator.loopTimeline([{\n  target: this.style,\n  to: {\n    transform: 'translateX(+=100px)'\n  }\n}, {\n  target: this.style,\n  to: {\n    transform: 'translateX(-=100px)'\n  }\n}]).catch(console.log)\n\nreturn {\n\n}"
         }
       ],
       "element": "codepen examples",
       "variantName": "spring loop",
       "variantId": 5,
       "style": "#point {\n  border-radius: 5px;\n  width: 10px;\n  height: 10px;\n  background-color: green;\n  z-index: 5;\n}\n",
-      "code": "<div id=\"point\" style=\"bottom: -5px; left: -5px;\"></div>\n",
-      "elState": "const animator = new Animator();\nanimator.loopTimeline([{\n  target: this.style,\n  to: {\n    transform: ['translateX(0px)', 'translateX(100px)']\n  }\n}, {\n  target: this.style,\n  to: {\n    transform: ['translateX(100px)', 'translateX(0px)']\n  }\n}])\n\nreturn {\n\n}"
+      "code": "<p id=\"point\" style=\"bottom: -5px; left: -5px; transform: translateX(0px)\"></p>\n",
+      "elState": "const animator = new Animator();\nanimator.loopTimeline([{\n  target: this.style,\n  to: {\n    transform: 'translateX(+=100px)'\n  }\n}, {\n  target: this.style,\n  to: {\n    transform: 'translateX(-=100px)'\n  }\n}]).catch(console.log)\n\nreturn {\n\n}"
     }
   ]
 }
