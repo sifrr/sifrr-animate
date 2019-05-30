@@ -1,7 +1,7 @@
 const Bezier = require('./bezier');
 const types = require('./types');
 const wait = require('./wait');
-const digitRgx = /(\d+\.?\d*)/;
+const digitRgx = /(-?\d+\.?\d*)/;
 const frames = new Set();
 
 function runFrames(currentTime) {
@@ -39,8 +39,9 @@ function animateOne({
     if (Array.isArray(type)) type = new Bezier(type);
     else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
 
-    let startTime = performance.now();
+    let startTime;
     const frame = function(currentTime) {
+      startTime = startTime || currentTime - 17;
       const percent = (currentTime - startTime) / time, bper = type(percent >= 1 ? 1 : percent);
       const next = diffs.map((d, i) => {
         const n = bper * d + fromNums[i];

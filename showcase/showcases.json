@@ -123,18 +123,18 @@
         },
         {
           "variantId": 4,
-          "variantName": "move on graph",
+          "variantName": "move on cosine graph",
           "style": "#element #graph {\n  background-color: white;\n  width: 500px;\n  height: 500px;\n  position: relative;\n}\n\n#canvas {\n  position: absolute;\n}\n\n#point {\n  border-radius: 5px;\n  width: 10px;\n  height: 10px;\n  position: absolute;\n  background-color: green;\n  z-index: 5;\n}\n",
-          "code": "<div id=\"graph\">\n  <svg id=\"canvas\" data-trusted=\"1\" style=\"height: 500px; width: 500px\">\n    <path d=\"M0,500 C125,450 125,0 500,0\" stroke=\"black\" stroke-width=\"2px\" fill=\"none\"/>\n  </svg>\n  <div id=\"point\" style=\"bottom: -5px; left: -5px;\"></div>\n</div>",
-          "elState": "Sifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    bottom: '495px'\n  },\n  type: 'ease',\n  time: 1000\n});\n\nSifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    left: '495px'\n  },\n  type: 'linear',\n  time: 1000\n});\n\nreturn {\n\n}"
+          "code": "<div id=\"graph\">\n  <svg id=\"canvas\" data-trusted=\"1\" style=\"height: 500px; width: 500px\">\n    <path d=\"M0,500 C182,500 318,0 500,0\" stroke=\"black\" stroke-width=\"2px\" fill=\"none\"/>\n  </svg>\n  <div id=\"point\" style=\"bottom: -5px; left: -5px;\"></div>\n</div>",
+          "elState": "Sifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    bottom: '495px'\n  },\n  type: 'spring',\n  time: 1000\n});\n\nSifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    left: '495px'\n  },\n  type: 'linear',\n  time: 1000\n});\n\nreturn {\n\n}"
         }
       ],
       "element": "codepen examples",
-      "variantName": "move on graph",
+      "variantName": "move on cosine graph",
       "variantId": 4,
       "style": "#element #graph {\n  background-color: white;\n  width: 500px;\n  height: 500px;\n  position: relative;\n}\n\n#canvas {\n  position: absolute;\n}\n\n#point {\n  border-radius: 5px;\n  width: 10px;\n  height: 10px;\n  position: absolute;\n  background-color: green;\n  z-index: 5;\n}\n",
-      "code": "<div id=\"graph\">\n  <svg id=\"canvas\" data-trusted=\"1\" style=\"height: 500px; width: 500px\">\n    <path d=\"M0,500 C125,450 125,0 500,0\" stroke=\"black\" stroke-width=\"2px\" fill=\"none\"/>\n  </svg>\n  <div id=\"point\" style=\"bottom: -5px; left: -5px;\"></div>\n</div>",
-      "elState": "Sifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    bottom: '495px'\n  },\n  type: 'ease',\n  time: 1000\n});\n\nSifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    left: '495px'\n  },\n  type: 'linear',\n  time: 1000\n});\n\nreturn {\n\n}"
+      "code": "<div id=\"graph\">\n  <svg id=\"canvas\" data-trusted=\"1\" style=\"height: 500px; width: 500px\">\n    <path d=\"M0,500 C182,500 318,0 500,0\" stroke=\"black\" stroke-width=\"2px\" fill=\"none\"/>\n  </svg>\n  <div id=\"point\" style=\"bottom: -5px; left: -5px;\"></div>\n</div>",
+      "elState": "Sifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    bottom: '495px'\n  },\n  type: 'spring',\n  time: 1000\n});\n\nSifrr.animate({\n  target: this.$('#point').style,\n  to: {\n    left: '495px'\n  },\n  type: 'linear',\n  time: 1000\n});\n\nreturn {\n\n}"
     }
   ]
 }

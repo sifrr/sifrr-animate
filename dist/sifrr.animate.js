@@ -1,4 +1,4 @@
-/*! Sifrr.animate v0.0.1 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
+/*! Sifrr.animate v0.0.2 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -57,7 +57,7 @@
 
   var wait = t => new Promise(res => setTimeout(res, t));
 
-  const digitRgx = /(\d+\.?\d*)/;
+  const digitRgx = /(-?\d+\.?\d*)/;
   const frames = new Set();
   function runFrames(currentTime) {
     frames.forEach(f => f(currentTime));
@@ -95,8 +95,9 @@
     return wait(delay).then(() => new Promise((resolve, reject) => {
       if (types[type]) type = types[type];
       if (Array.isArray(type)) type = new bezier(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
-      let startTime = performance.now();
+      let startTime;
       const frame = function (currentTime) {
+        startTime = startTime || currentTime - 17;
         const percent = (currentTime - startTime) / time,
               bper = type(percent >= 1 ? 1 : percent);
         const next = diffs.map((d, i) => {
