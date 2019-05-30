@@ -45,7 +45,7 @@ function animate({
 }
 
 animate.types = require('./types');
-animate.wait = require('./wait');
+animate.wait = t => new Promise(res => setTimeout(res, t));
 animate.animate = animate;
 animate.keyframes = (arrOpts) => {
   let promise = Promise.resolve(true);

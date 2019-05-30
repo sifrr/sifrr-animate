@@ -182,7 +182,7 @@
     }));
   }
   animate.types = types;
-  animate.wait = wait;
+  animate.wait = t => new Promise(res => setTimeout(res, t));
   animate.animate = animate;
   animate.keyframes = arrOpts => {
     let promise = Promise.resolve(true);

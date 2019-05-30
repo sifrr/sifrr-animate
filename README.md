@@ -25,7 +25,7 @@ This is a basic level library, which can be used to create complex animations as
 ## Usage
 
 ```js
-const { animate, wait } = require('@sifrr/elements');
+import { animate, wait } from '@sifrr/elements';
 
 animate({
   target: ,
@@ -69,7 +69,7 @@ If a function for `time`, `delay`, `to` is given, it will be called with index o
 You can add more types using bezier function values:
 
 ```js
-const { types } = require('@sifrr/elements');
+import { types } from '@sifrr/elements';
 
 types['customType'] = [.42, 0, .58, 1]; // bezier array
 // then use
@@ -96,6 +96,27 @@ Relative `to`, `to` can be relative number as well
 -   if from is `100px`, and to is `-=20px`, then final value will be `80px`
 -   if from is `100px`, and to is `*=2px`, then final value will be `200px`
 -   if from is `100px`, and to is `/=5px`, then final value will be `20px`
+
+## Advanced usages
+
+```js
+import { keyframes, loop } from '@sifrr/elements';
+
+// each animateOpts1 is valid options object for animate function
+// returns a promise that resolves after all the animations are complete
+keyframes([animateOpts1, animateOpts2, [ animateOpts3, animateOpts4 ], animateOpts5]);
+
+// this will execute the timeline:
+// <---1--->
+//          <---2--->
+//                   <---3--->
+//                   <---4--->
+//                            <---5--->
+//                                     Promise resolved
+
+// loop will execute the function on loop consecutively after previous promise is resolved
+loop(() => /* return any promise, eg. animate(...options), keyframes([...options]), etc */)
+```
 
 ## Standalone files
 
