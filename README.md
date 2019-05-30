@@ -16,8 +16,8 @@ This is a basic level library, which can be used to create complex animations as
 
 ## Size
 
-| Type                                         |                                                                                                                      Size                                                                                                                      |
-| :------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Type                                             |                                                                                                       Size                                                                                                       |
+| :----------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | Normal (`dist/sifrr.animate.js`)                 |                    [![Normal](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.js)                   |
 | Minified (`dist/sifrr.animate.min.js`)           |               [![Minified](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js)              |
 | Minified + Gzipped (`dist/sifrr.animate.min.js`) | [![Minified + Gzipped](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?compression=gzip&maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js) |
@@ -78,7 +78,7 @@ animate({ type: 'customType' ...})
 
 ### Format
 
-Property's current/from value and to value should be of same format (strings around numbers should de same).
+Property's current/from value and to value should be of same format (strings around numbers should be same).
 
 -   Number
 -   string with multiple numbers to animate, examples:
@@ -87,6 +87,15 @@ Property's current/from value and to value should be of same format (strings aro
     -   '123s'
     -   'abcd 1234 fed 45'
     -   'aaaaaa123aaaa123aaaaaa123aaaaaa'
+
+`OR`
+
+Relative `to`, `to` can be relative number as well
+
+-   if from is `100px`, and to is `+=20`, then final value will be `120px`
+-   if from is `100px`, and to is `-=20`, then final value will be `80px`
+-   if from is `100px`, and to is `*=2`, then final value will be `200px`
+-   if from is `100px`, and to is `/=5`, then final value will be `20px`
 
 ## Standalone files
 

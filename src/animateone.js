@@ -1,7 +1,7 @@
 const Bezier = require('./bezier');
 const types = require('./types');
 const wait = require('./wait');
-const digitRgx = /(-?\d+\.?\d*)/;
+const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
 const frames = new Set();
 
 function runFrames(currentTime) {
@@ -25,11 +25,31 @@ function animateOne({
   const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
   const onUp = typeof onUpdate === 'function';
   for (let i = 0; i < l; i++) {
-    const n = Number(toSplit[i]);
-    if (isNaN(n) || !toSplit[i]) raw.push(toSplit[i]);
+    const fn = Number(fromSplit[i]) || 0;
+    let tn = Number(toSplit[i]);
+    if (toSplit[i][1] === '=') {
+      tn = Number(toSplit[i].slice(2));
+      switch (toSplit[i][0]) {
+      case '+':
+        tn = fn + tn;
+        break;
+      case '-':
+        tn = fn - tn;
+        break;
+      case '*':
+        tn = fn * tn;
+        break;
+      case '/':
+        tn = fn / tn;
+        break;
+      default:
+        tn = Number(toSplit[i]);
+      }
+    }
+    if (isNaN(tn) || !toSplit[i]) raw.push(toSplit[i]);
     else {
-      fromNums.push(Number(fromSplit[i]) || 0);
-      diffs.push(n - (Number(fromSplit[i]) || 0));
+      fromNums.push(fn);
+      diffs.push(tn - fn);
     }
   }
 

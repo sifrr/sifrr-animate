@@ -1,11 +1,11 @@
+global.window = {
+  requestAnimationFrame: () => {}
+};
+
 describe('animateOne', function() {
   it('throws error if type is not correct', async () => {
     let error;
-    global.window = {
-      requestAnimationFrame: () => {}
-    };
     const animateOne = require('../../src/animateone');
-
     await animateOne({
       target: {},
       prop: 'c',

@@ -257,4 +257,66 @@ describe('animate', () => {
 
     expect(target).to.deep.equal({ a: 1000 });
   });
+
+  it('calculates relative numbers', async () => {
+    const t1 = await page.evaluate(async () => {
+      let target = {};
+      await animate({
+        target,
+        to: {
+          a: [89, '+=100']
+        },
+        time: 0
+      });
+
+      return target;
+    });
+
+    expect(t1).to.deep.equal({ a: 189 });
+
+    const t2 = await page.evaluate(async () => {
+      let target = {};
+      await animate({
+        target,
+        to: {
+          a: [89, '-=100']
+        },
+        time: 0
+      });
+
+      return target;
+    });
+
+    expect(t2).to.deep.equal({ a: -11 });
+
+    const t3 = await page.evaluate(async () => {
+      let target = {};
+      await animate({
+        target,
+        to: {
+          a: [90, '*=2']
+        },
+        time: 0
+      });
+
+      return target;
+    });
+
+    expect(t3).to.deep.equal({ a: 180 });
+
+    const t4 = await page.evaluate(async () => {
+      let target = {};
+      await animate({
+        target,
+        to: {
+          a: [100, '/=10']
+        },
+        time: 0
+      });
+
+      return target;
+    });
+
+    expect(t4).to.deep.equal({ a: 10 });
+  });
 });
