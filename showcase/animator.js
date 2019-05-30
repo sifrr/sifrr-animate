@@ -36,13 +36,7 @@ class Animator {
   // runs animation but not in same timeline
   animate(opts) {
     if (Array.isArray(opts)) return Promise.all(opts.map((o) => {
-      if (Array.isArray(o)) {
-        let promise = Promise.resolve(true);
-        o.forEach(o1 => {
-          promise = promise.then(() => Sifrr.animate(o1));
-        });
-        return promise;
-      }
+      if (Array.isArray(o)) return this.timeline(o);
       return Sifrr.animate(o);
     }));
     return Sifrr.animate(opts);
