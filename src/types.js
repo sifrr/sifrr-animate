@@ -3,5 +3,6 @@ module.exports = {
   ease: [.25, .1, .25, 1],
   easeIn: [.42, 0, 1, 1],
   easeOut: [0, 0, .58, 1],
-  easeInOut: [.42, 0, .58, 1]
+  easeInOut: [.42, 0, .58, 1],
+  spring: [.3642, 0, .6358, 1]
 };

@@ -1,4 +1,4 @@
-/*! Sifrr.animate v0.0.2 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
+/*! Sifrr.animate v0.0.1 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-elements */
 const beziers = {};
 class Bezier {
   constructor(args){
@@ -42,7 +42,8 @@ var types = {
   ease: [.25, .1, .25, 1],
   easeIn: [.42, 0, 1, 1],
   easeOut: [0, 0, .58, 1],
-  easeInOut: [.42, 0, .58, 1]
+  easeInOut: [.42, 0, .58, 1],
+  spring: [.3642, 0, .6358, 1]
 };
 
 var wait = (t) => new Promise(res => setTimeout(res, t));
@@ -60,7 +61,7 @@ function animateOne({
   from,
   to,
   time = 300,
-  type = 'ease',
+  type = 'spring',
   onUpdate,
   round = false,
   delay = 0
@@ -78,8 +79,8 @@ function animateOne({
   }
   const rawObj = { raw };
   return wait(delay).then(() => new Promise((resolve, reject) => {
-    if (types[type]) type = new bezier(types[type]);
-    else if (Array.isArray(type)) type = new bezier(type);
+    if (types[type]) type = types[type];
+    if (Array.isArray(type)) type = new bezier(type);
     else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
     let startTime = performance.now();
     const frame = function(currentTime) {
