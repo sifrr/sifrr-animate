@@ -169,6 +169,15 @@ function animate({
 animate.types = types;
 animate.wait = wait;
 animate.animate = animate;
+animate.keyframes = (arrOpts) => {
+  let promise = Promise.resolve(true);
+  arrOpts.forEach(opts => {
+    if (Array.isArray(opts)) promise = promise.then(() => Promise.all(opts.map(animate)));
+    promise = promise.then(() => animate(opts));
+  });
+  return promise;
+};
+animate.loop = (fxn) => fxn().then(() => animate.loop(fxn));
 var animate_1 = animate;
 
 export default animate_1;

@@ -47,5 +47,14 @@ function animate({
 animate.types = require('./types');
 animate.wait = require('./wait');
 animate.animate = animate;
+animate.keyframes = (arrOpts) => {
+  let promise = Promise.resolve(true);
+  arrOpts.forEach(opts => {
+    if (Array.isArray(opts)) promise = promise.then(() => Promise.all(opts.map(animate)));
+    promise = promise.then(() => animate(opts));
+  });
+  return promise;
+};
+animate.loop = (fxn) => fxn().then(() => animate.loop(fxn));
 
 module.exports = animate;

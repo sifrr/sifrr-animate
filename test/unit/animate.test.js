@@ -149,4 +149,44 @@ describe('animate', function() {
     expect(jj).to.equal(0);
     expect(kk).to.equal(0);
   });
+
+  it('works with keyframes', async () => {
+    const target = {};
+    await animate.keyframes([{
+      target,
+      to: { a: 1 },
+      time: 1,
+      delay: 1
+    }, {
+      target,
+      to: { a: 2 },
+      time: 1,
+      delay: 1
+    }, [ {
+      target,
+      to: { a: 3 },
+      time: 1,
+      delay: 1
+    }, {
+      target,
+      to: { a: 4 },
+      time: 1,
+      delay: 1
+    } ]]);
+
+    expect(animateOne.callCount).to.equal(4);
+    for (let i = 0; i < 4; i++) {
+      expect(animateOne.args[i][0]).to.deep.equal({
+        target,
+        prop: 'a',
+        to: i + 1,
+        time: 1,
+        type: undefined,
+        from: undefined,
+        onUpdate: undefined,
+        round: undefined,
+        delay: 1
+      });
+    }
+  });
 });
