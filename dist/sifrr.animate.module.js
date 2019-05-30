@@ -46,7 +46,7 @@ var types = {
   spring: [.3642, 0, .6358, 1]
 };
 
-var wait = (t) => new Promise(res => setTimeout(res, t));
+var wait = t => new Promise(res => setTimeout(res, t));
 
 const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
 const frames = new Set();
@@ -167,7 +167,7 @@ function animate({
   }));
 }
 animate.types = types;
-animate.wait = (t) => new Promise(res => setTimeout(res, t));
+animate.wait = wait;
 animate.animate = animate;
 animate.keyframes = (arrOpts) => {
   let promise = Promise.resolve(true);

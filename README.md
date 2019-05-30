@@ -10,7 +10,7 @@
 
 > ~1kb library to Animate any mutable object's properties using requestAnimationFrame with promise based API.
 
-This is a basic level library, which can be used to create complex animations as well like [anime.js](https://github.com/juliangarnier/anime), eg. [animator](./showcase/animator.js)
+This is a basic level library, which can be used to create complex animations as well like [anime.js](https://github.com/juliangarnier/anime), using keyframes, delay and loop.
 
 **Note**: Since it uses requestAnimationFrame, actual time taken to animate can vary +1 frame (~17ms for 60fps)
 
