@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "cache-manager": "^2.9.0",
-    "@sifrr/dev": "^0.0.2"
+    "@sifrr/dev": "^0.0.3"
   }
 }

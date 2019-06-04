@@ -764,10 +764,10 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@sifrr/dev@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.2.tgz#8ae9eff27e319c9927ec3a8edf92fcb5052563bc"
-  integrity sha512-l+1WWNe3PbsMIV58ENqSOHt5A8u0zjSefIu6v9yQUixils6HNQsD8S8kEimQth85OZAWe8COFaqSUh3MrEOTVQ==
+"@sifrr/dev@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.3.tgz#4784976c8b8fd9c6fe4df3a299b58f846a2541e7"
+  integrity sha512-yzqoHsNKFE+Fd4MGn6cj/BqV/BcacGuTFwop/v9cBE0Ju5wQ9rzJe13g9/G8mqqz6or5fJPWa9GvmDrCFs8BHA==
   dependencies:
     "@babel/core" "^7.4.0"
     "@babel/plugin-external-helpers" "^7.2.0"
