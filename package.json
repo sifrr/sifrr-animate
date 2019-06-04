@@ -33,7 +33,6 @@
     "build": "./node_modules/.bin/rollup -c"
   },
   "devDependencies": {
-    "cache-manager": "^2.9.0",
-    "@sifrr/dev": "^0.0.3"
+    "@sifrr/dev": "^0.0.4"
   }
 }

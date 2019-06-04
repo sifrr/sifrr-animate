@@ -48,11 +48,7 @@ runTests({
   coverage,
   filters,
   port,
-  securePort: 8889,
   useJunitReporter,
   inspect,
-  folders: {
-    static: [path.resolve('./src/test')]
-  },
   reporters
 });
