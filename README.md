@@ -100,7 +100,7 @@ Relative `to`, `to` can be relative number as well
 ## Advanced usages
 
 ```js
-import { keyframes, loop } from '@sifrr/elements';
+import { keyframes, loop } from '@sifrr/animate';
 
 // each animateOpts1 is valid options object for animate function
 // returns a promise that resolves after all the animations are complete
@@ -129,6 +129,7 @@ then use
 
 ```js
 Sifrr.animate({...});
+Sifrr.animate.keyframes([...]);
 Sifrr.animate.wait(100);
 Sifrr.animate.types;
 ```
