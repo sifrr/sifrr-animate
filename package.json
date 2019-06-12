@@ -33,6 +33,6 @@
     "build": "./node_modules/.bin/rollup -c"
   },
   "devDependencies": {
-    "@sifrr/dev": "^0.0.8"
+    "@sifrr/dev": "^0.0.9"
   }
 }
