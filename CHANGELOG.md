@@ -1,4 +1,4 @@
-## [0.0.2](https://github.com/sifrr/sifrr-animate/compare/v0.0.1...v0.0.2) (2019-05-20)
+## [0.0.2](https://github.com/sifrr/sifrr-animate/compare/v0.0.1...v0.0.2) (2019-05-20 08:41:06 +0000)
 
 
 ### Bug Fixes
@@ -23,7 +23,7 @@
 
 
 
-## 0.0.1 (2019-04-30)
+## [0.0.1](https://github.com/sifrr/sifrr-animate/compare/31d2a73...v0.0.1) (2019-04-30 07:53:04 +0000)
 
 
 ### Bug Fixes
