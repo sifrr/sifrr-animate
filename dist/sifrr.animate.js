@@ -1,4 +1,4 @@
-/*! sifrr-animate v0.0.2 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */
+/*! sifrr-animate v0.0.3 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
