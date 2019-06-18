@@ -5,7 +5,9 @@ const { exec } = require('@sifrr/dev');
 (async function() {
   const exists = await require('@sifrr/dev').checkTag();
   if (exists) return;
-  await require('@sifrr/dev').generateChangelog();
+  await require('@sifrr/dev').generateChangelog({
+    outputUnreleased: true
+  });
   await require('@sifrr/dev').gitAddCommitPush({
     files: ['CHANGELOG.md'],
     commitMsg: 'chore: update changelog'

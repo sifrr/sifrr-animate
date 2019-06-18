@@ -1,3 +1,25 @@
+## 0.0.3 (2019-06-17 22:57:42 +0900)
+
+
+
+## [0.0.3](https://github.com/sifrr/sifrr-animate/compare/v0.0.2...v0.0.3) (2019-06-17 10:22:55 +0000)
+
+
+### Bug Fixes
+
+* work with negative numbers too ([5e4c18f](https://github.com/sifrr/sifrr-animate/commit/5e4c18f))
+
+
+### Features
+
+* `this` inside time/to/delay fxns is target itself ([589ab3d](https://github.com/sifrr/sifrr-animate/commit/589ab3d))
+* add keyframes and loop functions ([cc629e9](https://github.com/sifrr/sifrr-animate/commit/cc629e9))
+* add relative example ([17d9c75](https://github.com/sifrr/sifrr-animate/commit/17d9c75))
+* add spring animation type, make it default ([d546b0c](https://github.com/sifrr/sifrr-animate/commit/d546b0c))
+* to can be relative number ([5732237](https://github.com/sifrr/sifrr-animate/commit/5732237))
+
+
+
 ## [0.0.2](https://github.com/sifrr/sifrr-animate/compare/v0.0.1...v0.0.2) (2019-05-20 08:41:06 +0000)
 
 
