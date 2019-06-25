@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0"
+    />
+    <meta charset="utf-8" />
     <title>Sifrr Animate Showcase</title>
     <style media="screen">
-      html, body {
+      html,
+      body {
         padding: 0;
         margin: 0;
       }
@@ -15,14 +19,15 @@
         width: 100vw;
       }
       *:not(:defined)::before {
-        content: " ";
+        content: ' ';
         display: block !important;
         width: 32px;
         height: 32px;
         margin: 1px;
         border-radius: 50%;
         border: 4px solid;
-        border-color: rgba(25,118,210,0.2) rgba(25,118,210,0.2) rgb(25,118,210) rgb(25,118,210,0.2);
+        border-color: rgba(25, 118, 210, 0.2) rgba(25, 118, 210, 0.2)
+          rgb(25, 118, 210) rgb(25, 118, 210, 0.2);
         animation: rotate 0.75s linear infinite;
       }
       @keyframes rotate {
@@ -40,13 +45,25 @@
   </head>
   <body>
     <sifrr-showcase url="./showcases.json"></sifrr-showcase>
-    <script src="https://cdn.jsdelivr.net/gh/sifrr/sifrr@master/packages/browser/sifrr-dom/dist/sifrr.dom.min.js" charset="utf-8"></script>
-    <script src="https://cdn.jsdelivr.net/gh/sifrr/sifrr@master/packages/browser/sifrr-fetch/dist/sifrr.fetch.min.js" charset="utf-8"></script>
-    <script src="https://cdn.jsdelivr.net/gh/sifrr/sifrr@master/packages/browser/sifrr-storage/dist/sifrr.storage.min.js" charset="utf-8"></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/sifrr/sifrr@master/packages/browser/sifrr-dom/dist/sifrr.dom.min.js"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/sifrr/sifrr@master/packages/browser/sifrr-fetch/dist/sifrr.fetch.min.js"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/sifrr/sifrr@master/packages/browser/sifrr-storage/dist/sifrr.storage.min.js"
+      charset="utf-8"
+    ></script>
     <script type="text/javascript">
       Sifrr.Dom.setup();
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/sifrr/sifrr-elements@master/dist/sifrr.elements.js" charset="utf-8"></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/sifrr/sifrr-elements@master/dist/sifrr.elements.js"
+      charset="utf-8"
+    ></script>
     <script src="../dist/sifrr.animate.js" charset="utf-8"></script>
   </body>
 </html>

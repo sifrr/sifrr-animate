@@ -44,16 +44,22 @@
       return t;
     }
   }
-  var bezier = Bezier;
 
-  var types = {
-    linear: [0, 0, 1, 1],
-    ease: [.25, .1, .25, 1],
-    easeIn: [.42, 0, 1, 1],
-    easeOut: [0, 0, .58, 1],
-    easeInOut: [.42, 0, .58, 1],
-    spring: [.3642, 0, .6358, 1]
-  };
+  const linear = [0, 0, 1, 1];
+  const ease = [0.25, 0.1, 0.25, 1];
+  const easeIn = [0.42, 0, 1, 1];
+  const easeOut = [0, 0, 0.58, 1];
+  const easeInOut = [0.42, 0, 0.58, 1];
+  const spring = [0.3642, 0, 0.6358, 1];
+
+  const types = /*#__PURE__*/Object.freeze({
+    linear: linear,
+    ease: ease,
+    easeIn: easeIn,
+    easeOut: easeOut,
+    easeInOut: easeInOut,
+    spring: spring
+  });
 
   const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
   const frames = new Set();
@@ -110,7 +116,7 @@
     };
     return new Promise((resolve, reject) => {
       if (types[type]) type = types[type];
-      if (Array.isArray(type)) type = new bezier(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
+      if (Array.isArray(type)) type = new Bezier(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
       const startTime = performance.now() + delay;
       const frame = function (currentTime) {
         const percent = (currentTime - startTime) / time,
@@ -133,9 +139,6 @@
       frames.add(frame);
     });
   }
-  var animateone = animateOne;
-
-  var wait = t => t > 0 ? new Promise(res => setTimeout(res, t)) : true;
 
   function animate({
     targets,
@@ -156,7 +159,7 @@
         if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
           promises.push(iterate(tg[prop], props[prop], d, ntime));
         } else {
-          promises.push(animateone({
+          promises.push(animateOne({
             target: tg,
             prop,
             to: final,
@@ -181,8 +184,8 @@
       return iterate(target, numTo, numDelay, numTime);
     }));
   }
-  animate.types = types;
-  animate.wait = wait;
+  animate.types = require('./types');
+  animate.wait = require('./wait').default;
   animate.animate = animate;
   animate.keyframes = arrOpts => {
     let promise = Promise.resolve(true);
@@ -193,9 +196,8 @@
     return promise;
   };
   animate.loop = fxn => fxn().then(() => animate.loop(fxn));
-  var animate_1 = animate;
 
-  return animate_1;
+  return animate;
 
 }));
 /*! (c) @aadityataparia */

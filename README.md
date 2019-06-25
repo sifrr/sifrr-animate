@@ -18,9 +18,13 @@ This is a basic level library, which can be used to create complex animations as
 
 | Type                                             |                                                                                                       Size                                                                                                       |
 | :----------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Normal (`dist/sifrr.animate.js`)                 |                    [![Normal](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.js)                   |
-| Minified (`dist/sifrr.animate.min.js`)           |               [![Minified](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js)              |
+| Normal (`dist/sifrr.animate.js`)                 |                   [![Normal](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.js)                    |
+| Minified (`dist/sifrr.animate.min.js`)           |              [![Minified](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js)               |
 | Minified + Gzipped (`dist/sifrr.animate.min.js`) | [![Minified + Gzipped](https://img.badgesize.io/sifrr/sifrr-animate/master/dist/sifrr.animate.min.js?compression=gzip&maxAge=600)](https://github.com/sifrr/sifrr-animate/blob/master/dist/sifrr.animate.min.js) |
+
+## Examples
+
+<https://sifrr.github.io/sifrr-animate/showcase/>
 
 ## Usage
 
@@ -55,13 +59,13 @@ wait(1000 /* in ms */).then(() => {
 })
 ```
 
--   `target(s)` - object(s) whose properties you want to animate, target is single object, targets is array of object
--   `to` - properties with final values you want to animate to.
--   `time` - time taken to animate (in ms)
--   `type` - type of animation (pre added: \['linear', 'ease', 'easeIn', 'easeOut', 'easeInOut', 'spring']). type can also be a bezier array or function which takes x value between (0,1) and returns corresponding y value.
--   `round` - round off animated values or not
--   `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`, doing heavy lifting here can cause laggy animation
--   `delay` - (in miliseconds) number or function, delay before start of animation (in ms)
+- `target(s)` - object(s) whose properties you want to animate, target is single object, targets is array of object
+- `to` - properties with final values you want to animate to.
+- `time` - time taken to animate (in ms)
+- `type` - type of animation (pre added: \['linear', 'ease', 'easeIn', 'easeOut', 'easeInOut', 'spring']). type can also be a bezier array or function which takes x value between (0,1) and returns corresponding y value.
+- `round` - round off animated values or not
+- `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`, doing heavy lifting here can cause laggy animation
+- `delay` - (in miliseconds) number or function, delay before start of animation (in ms)
 
 If from values are not given (or object doesn't have that property), they will start from 0.
 If a function for `time`, `delay`, `to` is given, it will be called with index of target to animate (starting from 0) and return value will be used as corresponding value for that target. `this` inside these functions is `target`.
@@ -80,22 +84,22 @@ animate({ type: 'customType' ...})
 
 Property's current/from value and to value should be of same format (strings around numbers should be same).
 
--   Number
--   string with multiple numbers to animate, examples:
-    -   '123'
-    -   'p123'
-    -   '123s'
-    -   'abcd 1234 fed 45'
-    -   'aaaaaa123aaaa123aaaaaa123aaaaaa'
+- Number
+- string with multiple numbers to animate, examples:
+  - '123'
+  - 'p123'
+  - '123s'
+  - 'abcd 1234 fed 45'
+  - 'aaaaaa123aaaa123aaaaaa123aaaaaa'
 
 `OR`
 
 Relative `to`, `to` can be relative number as well
 
--   if from is `100px`, and to is `+=20px`, then final value will be `120px`
--   if from is `100px`, and to is `-=20px`, then final value will be `80px`
--   if from is `100px`, and to is `*=2px`, then final value will be `200px`
--   if from is `100px`, and to is `/=5px`, then final value will be `20px`
+- if from is `100px`, and to is `+=20px`, then final value will be `120px`
+- if from is `100px`, and to is `-=20px`, then final value will be `80px`
+- if from is `100px`, and to is `*=2px`, then final value will be `200px`
+- if from is `100px`, and to is `/=5px`, then final value will be `20px`
 
 ## Advanced usages
 
@@ -131,9 +135,6 @@ then use
 Sifrr.animate({...});
 Sifrr.animate.keyframes([...]);
 Sifrr.animate.wait(100);
+Sifrr.animate.loop(() => {});
 Sifrr.animate.types;
 ```
-
-## Examples
-
-<https://sifrr.github.io/sifrr-animate/showcase/>

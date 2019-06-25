@@ -1,7 +1,7 @@
 const beziers = {};
 
 class Bezier {
-  constructor(args){
+  constructor(args) {
     const key = args.join('_');
     if (!beziers[key]) {
       this.setProps(...args);
@@ -12,12 +12,17 @@ class Bezier {
 
   setProps(x1, y1, x2, y2) {
     let props = {
-      x1, y1, x2, y2,
+      x1,
+      y1,
+      x2,
+      y2,
       A: (x1, x2) => 1.0 - 3.0 * x2 + 3.0 * x1,
       B: (x1, x2) => 3.0 * x2 - 6.0 * x1,
-      C: (x1) => 3.0 * x1,
-      CalcBezier: (t, x1, x2) => ((this.A(x1, x2) * t + this.B(x1, x2)) * t + this.C(x1)) * t,
-      GetSlope: (t, x1, x2) => 3.0 * this.A(x1, x2) * t * t + 2.0 * this.B(x1, x2) * t + this.C(x1)
+      C: x1 => 3.0 * x1,
+      CalcBezier: (t, x1, x2) =>
+        ((this.A(x1, x2) * t + this.B(x1, x2)) * t + this.C(x1)) * t,
+      GetSlope: (t, x1, x2) =>
+        3.0 * this.A(x1, x2) * t * t + 2.0 * this.B(x1, x2) * t + this.C(x1)
     };
     Object.assign(this, props);
   }
@@ -39,4 +44,4 @@ class Bezier {
   }
 }
 
-module.exports = Bezier;
+export default Bezier;

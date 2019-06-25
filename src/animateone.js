@@ -1,5 +1,5 @@
-const Bezier = require('./bezier');
-const types = require('./types');
+import Bezier from './bezier';
+import * as types from './types';
 const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
 const frames = new Set();
 
@@ -20,7 +20,11 @@ function animateOne({
   round = false,
   delay = 0 // number
 }) {
-  const toSplit = to.toString().split(digitRgx), l = toSplit.length, raw = [], fromNums = [], diffs = [];
+  const toSplit = to.toString().split(digitRgx),
+    l = toSplit.length,
+    raw = [],
+    fromNums = [],
+    diffs = [];
   const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
   const onUp = typeof onUpdate === 'function';
   for (let i = 0; i < l; i++) {
@@ -29,18 +33,18 @@ function animateOne({
     if (toSplit[i][1] === '=') {
       tn = Number(toSplit[i].slice(2));
       switch (toSplit[i][0]) {
-      case '+':
-        tn = fn + tn;
-        break;
-      case '-':
-        tn = fn - tn;
-        break;
-      case '*':
-        tn = fn * tn;
-        break;
-      case '/':
-        tn = fn / tn;
-        break;
+        case '+':
+          tn = fn + tn;
+          break;
+        case '-':
+          tn = fn - tn;
+          break;
+        case '*':
+          tn = fn * tn;
+          break;
+        case '/':
+          tn = fn / tn;
+          break;
       }
     } else tn = Number(toSplit[i]);
     if (isNaN(tn) || !toSplit[i]) raw.push(toSplit[i]);
@@ -54,11 +58,20 @@ function animateOne({
   return new Promise((resolve, reject) => {
     if (types[type]) type = types[type];
     if (Array.isArray(type)) type = new Bezier(type);
-    else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
+    else if (typeof type !== 'function')
+      return reject(
+        Error(
+          'type should be one of ' +
+            Object.keys(types).toString() +
+            ' or Bezier Array or Function, given ' +
+            type
+        )
+      );
 
     const startTime = performance.now() + delay;
     const frame = function(currentTime) {
-      const percent = (currentTime - startTime) / time, bper = type(percent > 1 ? 1 : percent);
+      const percent = (currentTime - startTime) / time,
+        bper = type(percent > 1 ? 1 : percent);
       if (percent < 0) return;
       const next = diffs.map((d, i) => {
         const n = bper * d + fromNums[i];
@@ -69,7 +82,7 @@ function animateOne({
         target[prop] = Number(val) || val;
         if (onUp) onUpdate(target, prop, target[prop]);
         if (percent >= 1) resolve(frames.delete(frame));
-      } catch(e) {
+      } catch (e) {
         frames.delete(frame);
         reject(e);
       }
@@ -78,4 +91,4 @@ function animateOne({
   });
 }
 
-module.exports = animateOne;
+export default animateOne;
