@@ -3,18 +3,18 @@ const path = require('path');
 const { getRollupConfig } = require('@sifrr/dev');
 const footer = '/*! (c) @aadityataparia */';
 
-function moduleConfig(name, root, minify = false, isModule = false) {
+function moduleConfig(name, root, minify = false, type) {
   const banner = `/*! sifrr-animate v${
     require('./package.json').version
   } - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */`;
   return getRollupConfig(
     {
       name,
-      inputFile: path.join(root, `./src/animate.js`),
+      inputFile: path.join(root, `./src/animate.ts`),
       outputFolder: path.join(root, './dist'),
       outputFileName: 'sifrr.animate',
       minify,
-      type: isModule ? 'module' : 'browser'
+      type
     },
     {
       output: {
@@ -26,7 +26,6 @@ function moduleConfig(name, root, minify = false, isModule = false) {
 }
 
 module.exports = [
-  moduleConfig('Sifrr.animate', __dirname),
-  moduleConfig('Sifrr.animate', __dirname, true),
-  moduleConfig('Sifrr.animate', __dirname, false, true)
+  moduleConfig('Sifrr.animate', __dirname, true, ['browser']),
+  moduleConfig('Sifrr.animate', __dirname, false, ['cjs', 'module', 'browser'])
 ];
