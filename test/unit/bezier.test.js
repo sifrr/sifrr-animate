@@ -1,4 +1,4 @@
-const Bezier = require('../../src/bezier').default;
+import Bezier from '../../src/bezier';
 
 describe('Bezier', function() {
   it('has correct values', async () => {
