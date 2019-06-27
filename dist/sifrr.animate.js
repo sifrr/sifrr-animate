@@ -6,15 +6,14 @@ this.Sifrr.animate = (function () {
   const beziers = {};
 
   class Bezier {
-    constructor(args) {
-      const key = args.join('_');
-
-      if (!beziers[key]) {
-        this.setProps(...args);
-        beziers[key] = this.final.bind(this);
-      }
-
+    static fromArray(arr) {
+      const key = arr.toString();
+      if (!beziers[key]) beziers[key] = new Bezier(...arr).final.bind(this);
       return beziers[key];
+    }
+
+    constructor(x1, y1, x2, y2) {
+      this.setProps(x1, y1, x2, y2);
     }
 
     setProps(x1, y1, x2, y2) {
@@ -144,7 +143,7 @@ this.Sifrr.animate = (function () {
     };
     return new Promise((resolve, reject) => {
       if (types[type]) type = types[type];
-      if (Array.isArray(type)) type = new Bezier(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
+      if (Array.isArray(type)) type = Bezier.fromArray(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
       const startTime = performance.now() + delay;
 
       const frame = function (currentTime) {
