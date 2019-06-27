@@ -5,6 +5,7 @@ describe('loop', function() {
     let i = 1;
     loop(async () => {
       await wait(50);
+      await wait(0);
       i++;
     });
 
