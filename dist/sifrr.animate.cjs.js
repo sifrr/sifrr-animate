@@ -173,7 +173,7 @@ function animateOne({
   });
 }
 
-const wait = (t => t > 0 ? new Promise(res => setTimeout(res, t)) : true);
+const wait = (t => t > 0 ? new Promise(res => setTimeout(res, t)) : Promise.resolve(true));
 
 function animate({
   targets,
