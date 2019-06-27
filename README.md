@@ -29,7 +29,7 @@ This is a basic level library, which can be used to create complex animations as
 ## Usage
 
 ```js
-import { animate, wait } from '@sifrr/elements';
+import { animate, wait } from '@sifrr/animate';
 
 animate({
   target: ,
@@ -73,7 +73,7 @@ If a function for `time`, `delay`, `to` is given, it will be called with index o
 You can add more types using bezier function values:
 
 ```js
-import { types } from '@sifrr/elements';
+import { types } from '@sifrr/animate';
 
 types['customType'] = [.42, 0, .58, 1]; // bezier array
 // then use
@@ -132,9 +132,15 @@ loop(() => /* return any promise, eg. animate(...options), keyframes([...options
 then use
 
 ```js
-Sifrr.animate({...});
+Sifrr.animate.animate({...});
 Sifrr.animate.keyframes([...]);
 Sifrr.animate.wait(100);
 Sifrr.animate.loop(() => {});
 Sifrr.animate.types;
+```
+
+## CommonJs
+
+```js
+const { animate, types, keyframes, loop } = require('@sifrr/animate)
 ```

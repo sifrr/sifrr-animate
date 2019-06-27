@@ -1,4 +1,6 @@
 import animateOne from './animateone';
+import * as types from './types';
+import wait from './wait';
 
 function animate({
   targets,
@@ -50,10 +52,8 @@ function animate({
   );
 }
 
-animate.types = require('./types');
-animate.wait = require('./wait').default;
-animate.animate = animate;
-animate.keyframes = arrOpts => {
+export { types, wait, animate, animateOne };
+export function keyframes(arrOpts) {
   let promise = Promise.resolve(true);
   arrOpts.forEach(opts => {
     if (Array.isArray(opts))
@@ -61,7 +61,5 @@ animate.keyframes = arrOpts => {
     promise = promise.then(() => animate(opts));
   });
   return promise;
-};
-animate.loop = fxn => fxn().then(() => animate.loop(fxn));
-
-export default animate;
+}
+export const loop = fxn => fxn().then(() => loop(fxn));

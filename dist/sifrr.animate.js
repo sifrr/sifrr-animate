@@ -1,48 +1,69 @@
 /*! sifrr-animate v0.0.3 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, (global.Sifrr = global.Sifrr || {}, global.Sifrr.animate = factory()));
-}(this, function () { 'use strict';
+this.Sifrr = this.Sifrr || {};
+this.Sifrr.animate = (function (exports) {
+  'use strict';
 
   const beziers = {};
+
   class Bezier {
-    constructor(args) {
-      const key = args.join('_');
+    static fromArray(arr) {
+      const key = arr.toString();
+
       if (!beziers[key]) {
-        this.setProps(...args);
-        beziers[key] = this.final.bind(this);
+        const bez = new Bezier(...arr);
+        beziers[key] = bez.final.bind(bez);
       }
+
       return beziers[key];
     }
+
+    constructor(x1, y1, x2, y2) {
+      this.setProps(x1, y1, x2, y2);
+    }
+
     setProps(x1, y1, x2, y2) {
       let props = {
         x1,
         y1,
         x2,
-        y2,
-        A: (x1, x2) => 1.0 - 3.0 * x2 + 3.0 * x1,
-        B: (x1, x2) => 3.0 * x2 - 6.0 * x1,
-        C: x1 => 3.0 * x1,
-        CalcBezier: (t, x1, x2) => ((this.A(x1, x2) * t + this.B(x1, x2)) * t + this.C(x1)) * t,
-        GetSlope: (t, x1, x2) => 3.0 * this.A(x1, x2) * t * t + 2.0 * this.B(x1, x2) * t + this.C(x1)
+        y2
       };
+
+      const A = (a, b) => 1.0 - 3.0 * b + 3.0 * a;
+
+      const B = (a, b) => 3.0 * b - 6.0 * a;
+
+      const C = a => 3.0 * a;
+
+      const aX1X2 = A(x1, x2) * 3.0;
+      const bX1X2 = B(x1, x2) * 2.0;
+      const cX1 = C(x1);
+
+      this.GetSlope = t => aX1X2 * t * t + bX1X2 * t + cX1;
+
+      this.CalcBezier = (t, a, b) => ((A(a, b) * t + B(a, b)) * t + C(a)) * t;
+
       Object.assign(this, props);
     }
+
     final(x) {
       if (this.x1 == this.y1 && this.x2 == this.y2) return x;
       return this.CalcBezier(this.GetTForX(x), this.y1, this.y2);
     }
+
     GetTForX(xx) {
       let t = xx;
+
       for (let i = 0; i < 4; ++i) {
-        let slope = this.GetSlope(t, this.x1, this.x2);
+        let slope = this.GetSlope(t);
         if (slope == 0) return t;
         let x = this.CalcBezier(t, this.x1, this.x2) - xx;
         t -= x / slope;
       }
+
       return t;
     }
+
   }
 
   const linear = [0, 0, 1, 1];
@@ -63,11 +84,14 @@
 
   const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
   const frames = new Set();
+
   function runFrames(currentTime) {
     frames.forEach(f => f(currentTime));
     window.requestAnimationFrame(runFrames);
   }
+
   window.requestAnimationFrame(runFrames);
+
   function animateOne({
     target,
     prop,
@@ -86,38 +110,47 @@
           diffs = [];
     const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
     const onUp = typeof onUpdate === 'function';
+
     for (let i = 0; i < l; i++) {
       const fn = Number(fromSplit[i]) || 0;
       let tn;
+
       if (toSplit[i][1] === '=') {
         tn = Number(toSplit[i].slice(2));
+
         switch (toSplit[i][0]) {
           case '+':
             tn = fn + tn;
             break;
+
           case '-':
             tn = fn - tn;
             break;
+
           case '*':
             tn = fn * tn;
             break;
+
           case '/':
             tn = fn / tn;
             break;
         }
       } else tn = Number(toSplit[i]);
+
       if (isNaN(tn) || !toSplit[i]) raw.push(toSplit[i]);else {
         fromNums.push(fn);
         diffs.push(tn - fn);
       }
     }
+
     const rawObj = {
       raw
     };
     return new Promise((resolve, reject) => {
       if (types[type]) type = types[type];
-      if (Array.isArray(type)) type = new Bezier(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
+      if (Array.isArray(type)) type = Bezier.fromArray(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
       const startTime = performance.now() + delay;
+
       const frame = function (currentTime) {
         const percent = (currentTime - startTime) / time,
               bper = type(percent > 1 ? 1 : percent);
@@ -127,6 +160,7 @@
           return round ? Math.round(n) : n;
         });
         const val = String.raw(rawObj, ...next);
+
         try {
           target[prop] = Number(val) || val;
           if (onUp) onUpdate(target, prop, target[prop]);
@@ -136,9 +170,12 @@
           reject(e);
         }
       };
+
       frames.add(frame);
     });
   }
+
+  const wait = (t => t > 0 ? new Promise(res => setTimeout(res, t)) : Promise.resolve(true));
 
   function animate({
     targets,
@@ -151,11 +188,14 @@
     delay
   }) {
     targets = targets ? Array.from(targets) : [target];
+
     function iterate(tg, props, d, ntime) {
       const promises = [];
+
       for (let prop in props) {
         let from, final;
         if (Array.isArray(props[prop])) [from, final] = props[prop];else final = props[prop];
+
         if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
           promises.push(iterate(tg[prop], props[prop], d, ntime));
         } else {
@@ -172,8 +212,10 @@
           }));
         }
       }
+
       return Promise.all(promises);
     }
+
     let numTo = to,
         numDelay = delay,
         numTime = time;
@@ -184,21 +226,25 @@
       return iterate(target, numTo, numDelay, numTime);
     }));
   }
-  animate.types = require('./types');
-  animate.wait = require('./wait').default;
-  animate.animate = animate;
-  animate.keyframes = arrOpts => {
+  function keyframes(arrOpts) {
     let promise = Promise.resolve(true);
     arrOpts.forEach(opts => {
       if (Array.isArray(opts)) promise = promise.then(() => Promise.all(opts.map(animate)));
       promise = promise.then(() => animate(opts));
     });
     return promise;
-  };
-  animate.loop = fxn => fxn().then(() => animate.loop(fxn));
+  }
+  const loop = fxn => fxn().then(() => loop(fxn));
 
-  return animate;
+  exports.animate = animate;
+  exports.animateOne = animateOne;
+  exports.keyframes = keyframes;
+  exports.loop = loop;
+  exports.types = types;
+  exports.wait = wait;
 
-}));
+  return exports;
+
+}({}));
 /*! (c) @aadityataparia */
 //# sourceMappingURL=sifrr.animate.js.map
