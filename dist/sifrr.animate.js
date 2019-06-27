@@ -8,7 +8,12 @@ this.Sifrr.animate = (function () {
   class Bezier {
     static fromArray(arr) {
       const key = arr.toString();
-      if (!beziers[key]) beziers[key] = new Bezier(...arr).final.bind(this);
+
+      if (!beziers[key]) {
+        const bez = new Bezier(...arr);
+        beziers[key] = bez.final.bind(bez);
+      }
+
       return beziers[key];
     }
 
