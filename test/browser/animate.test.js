@@ -1,3 +1,4 @@
+/* global animate */
 const FRAME_TIME = 20;
 
 describe('animate', () => {
@@ -7,7 +8,8 @@ describe('animate', () => {
 
   it('works with single target', async () => {
     const { i, target } = await page.evaluate(async () => {
-      let i = 0, onUpdate = () => i++;
+      let i = 0,
+        onUpdate = () => i++;
       let target = { a: 0 };
       await animate({
         target,
@@ -20,19 +22,22 @@ describe('animate', () => {
       return { i, target };
     });
 
-    expect(i).to.be.at.least(300/FRAME_TIME);
+    expect(i).to.be.at.least(300 / FRAME_TIME);
     expect(target).to.deep.equal({ a: 100 });
   });
 
   it('works even if one animation errors', async () => {
-    const { i, target, error} = await page.evaluate(async () => {
-      let target = { a: 0 }, i = 0, onUpdate = () => i++, error;
+    const { i, target, error } = await page.evaluate(async () => {
+      let target = { a: 0 },
+        i = 0,
+        onUpdate = () => i++,
+        error;
       await animate({
         target: 'ok',
         to: {
           data: 100
         }
-      }).catch(e => error = e);
+      }).catch(e => (error = e));
       await animate({
         target,
         to: {
@@ -44,14 +49,15 @@ describe('animate', () => {
       return { i, target, error };
     });
 
-    expect(i).to.be.at.least(300/FRAME_TIME);
+    expect(i).to.be.at.least(300 / FRAME_TIME);
     expect(target).to.deep.equal({ a: 100 });
     expect(error).to.exist;
   });
 
   it('works with single digit', async () => {
     const { i, target } = await page.evaluate(async () => {
-      let i = 0, onUpdate = () => i++;
+      let i = 0,
+        onUpdate = () => i++;
       let target = { a: 0 };
       await animate({
         target,
@@ -65,13 +71,14 @@ describe('animate', () => {
       return { i, target };
     });
 
-    expect(i).to.be.at.least(100/FRAME_TIME);
+    expect(i).to.be.at.least(100 / FRAME_TIME);
     expect(target).to.deep.equal({ a: 9 });
   });
 
   it('works without from', async () => {
     const { i, target } = await page.evaluate(async () => {
-      let i = 0, onUpdate = () => i++;
+      let i = 0,
+        onUpdate = () => i++;
       let target = {};
       await animate({
         target,
@@ -85,15 +92,16 @@ describe('animate', () => {
       return { i, target };
     });
 
-    expect(i).to.be.at.least(100/FRAME_TIME);
+    expect(i).to.be.at.least(100 / FRAME_TIME);
     expect(target).to.deep.equal({ a: 100 });
   });
 
   it('works with from in array', async () => {
     const calls = await page.evaluate(async () => {
-      let calls = [], onUpdate = function(target, prop, val) {
-        calls.push(val);
-      };
+      let calls = [],
+        onUpdate = function(target, prop, val) {
+          calls.push(val);
+        };
       let target = {};
       await animate({
         target,
@@ -107,16 +115,17 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls.length).to.be.at.least(100 / FRAME_TIME);
     expect(calls[0]).to.be.at.least(1000);
     expect(calls[calls.length - 1]).to.equal(1100);
   });
 
   it('works with string', async () => {
     const calls = await page.evaluate(async () => {
-      let calls = [], onUpdate = function(target, prop, val) {
-        calls.push(val);
-      };
+      let calls = [],
+        onUpdate = function(target, prop, val) {
+          calls.push(val);
+        };
       let target = {
         a: 'acd10bcc100'
       };
@@ -132,7 +141,7 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls.length).to.be.at.least(100 / FRAME_TIME);
     expect(calls[0]).to.not.equal('acd15bcc159');
     expect(calls[calls.length - 1]).to.equal('acd15bcc159');
 
@@ -143,9 +152,10 @@ describe('animate', () => {
 
   it('works with decimal string', async () => {
     const calls = await page.evaluate(async () => {
-      let calls = [], onUpdate = function(target, prop, val) {
-        calls.push(val);
-      };
+      let calls = [],
+        onUpdate = function(target, prop, val) {
+          calls.push(val);
+        };
       let target = {
         a: '0.567px'
       };
@@ -161,7 +171,7 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls.length).to.be.at.least(100 / FRAME_TIME);
     expect(calls[0]).to.not.equal('145.567px');
     expect(calls[calls.length - 1]).to.equal('145.567px');
 
@@ -173,11 +183,11 @@ describe('animate', () => {
 
   it('works with string, no from value', async () => {
     const calls = await page.evaluate(async () => {
-      let calls = [], onUpdate = function(target, prop, val) {
-        calls.push(val);
-      };
-      let target = {
-      };
+      let calls = [],
+        onUpdate = function(target, prop, val) {
+          calls.push(val);
+        };
+      let target = {};
       await animate({
         target,
         to: {
@@ -190,7 +200,7 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls.length).to.be.at.least(100 / FRAME_TIME);
     expect(calls[0]).to.not.equal('acd15bcc159');
     expect(calls[calls.length - 1]).to.equal('acd15bcc159');
 
@@ -201,9 +211,10 @@ describe('animate', () => {
 
   it('rounds off', async () => {
     const calls = await page.evaluate(async () => {
-      let calls = [], onUpdate = function(target, prop, val) {
-        calls.push(val);
-      };
+      let calls = [],
+        onUpdate = function(target, prop, val) {
+          calls.push(val);
+        };
       let target = {};
       await animate({
         target,
@@ -218,7 +229,7 @@ describe('animate', () => {
       return calls;
     });
 
-    expect(calls.length).to.be.at.least(100/FRAME_TIME);
+    expect(calls.length).to.be.at.least(100 / FRAME_TIME);
     expect(calls[1].toString().indexOf('.')).to.equal(-1);
   });
 
@@ -249,7 +260,7 @@ describe('animate', () => {
           a: 100
         },
         time: 10,
-        type: (x) => 10 * x
+        type: x => 10 * x
       });
 
       return target;

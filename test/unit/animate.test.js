@@ -1,6 +1,6 @@
 const mock = require('mock-require');
 mock('../../src/animateone', sinon.spy());
-const animate = require('../../src/animate');
+const animate = require('../../src/animate').default;
 const animateOne = require('../../src/animateone');
 
 describe('animate', function() {
@@ -152,27 +152,34 @@ describe('animate', function() {
 
   it('works with keyframes', async () => {
     const target = {};
-    await animate.keyframes([{
-      target,
-      to: { a: 1 },
-      time: 1,
-      delay: 1
-    }, {
-      target,
-      to: { a: 2 },
-      time: 1,
-      delay: 1
-    }, [ {
-      target,
-      to: { a: 3 },
-      time: 1,
-      delay: 1
-    }, {
-      target,
-      to: { a: 4 },
-      time: 1,
-      delay: 1
-    } ]]);
+    await animate.keyframes([
+      {
+        target,
+        to: { a: 1 },
+        time: 1,
+        delay: 1
+      },
+      {
+        target,
+        to: { a: 2 },
+        time: 1,
+        delay: 1
+      },
+      [
+        {
+          target,
+          to: { a: 3 },
+          time: 1,
+          delay: 1
+        },
+        {
+          target,
+          to: { a: 4 },
+          time: 1,
+          delay: 1
+        }
+      ]
+    ]);
 
     expect(animateOne.callCount).to.equal(4);
     for (let i = 0; i < 4; i++) {

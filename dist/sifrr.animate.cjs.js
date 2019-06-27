@@ -1,4 +1,6 @@
 /*! sifrr-animate v0.0.3 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */
+'use strict';
+
 const beziers = {};
 
 class Bezier {
@@ -222,6 +224,7 @@ function animate({
 animate.types = types;
 animate.wait = wait;
 animate.animate = animate;
+animate.animateOne = animateOne;
 
 animate.keyframes = arrOpts => {
   let promise = Promise.resolve(true);
@@ -234,6 +237,6 @@ animate.keyframes = arrOpts => {
 
 animate.loop = fxn => fxn().then(() => animate.loop(fxn));
 
-export default animate;
+module.exports = animate;
 /*! (c) @aadityataparia */
-//# sourceMappingURL=sifrr.animate.module.js.map
+//# sourceMappingURL=sifrr.animate.cjs.js.map

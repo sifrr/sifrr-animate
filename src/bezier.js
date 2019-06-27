@@ -15,15 +15,19 @@ class Bezier {
       x1,
       y1,
       x2,
-      y2,
-      A: (x1, x2) => 1.0 - 3.0 * x2 + 3.0 * x1,
-      B: (x1, x2) => 3.0 * x2 - 6.0 * x1,
-      C: x1 => 3.0 * x1,
-      CalcBezier: (t, x1, x2) =>
-        ((this.A(x1, x2) * t + this.B(x1, x2)) * t + this.C(x1)) * t,
-      GetSlope: (t, x1, x2) =>
-        3.0 * this.A(x1, x2) * t * t + 2.0 * this.B(x1, x2) * t + this.C(x1)
+      y2
     };
+    const A = (a, b) => 1.0 - 3.0 * b + 3.0 * a;
+    const B = (a, b) => 3.0 * b - 6.0 * a;
+    const C = a => 3.0 * a;
+
+    const aX1X2 = A(x1, x2) * 3.0;
+    const bX1X2 = B(x1, x2) * 2.0;
+    const cX1 = C(x1);
+    this.GetSlope = t => aX1X2 * t * t + bX1X2 * t + cX1;
+
+    this.CalcBezier = (t, a, b) => ((A(a, b) * t + B(a, b)) * t + C(a)) * t;
+
     Object.assign(this, props);
   }
 
@@ -35,7 +39,7 @@ class Bezier {
   GetTForX(xx) {
     let t = xx;
     for (let i = 0; i < 4; ++i) {
-      let slope = this.GetSlope(t, this.x1, this.x2);
+      let slope = this.GetSlope(t);
       if (slope == 0) return t;
       let x = this.CalcBezier(t, this.x1, this.x2) - xx;
       t -= x / slope;
