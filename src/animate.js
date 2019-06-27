@@ -10,17 +10,19 @@ function animate({
   type,
   onUpdate,
   round,
+  finalPercent,
+  beforePercent,
   delay // number or function
 }) {
   targets = targets ? Array.from(targets) : [target];
-  function iterate(tg, props, d, ntime) {
+  function iterate(tg, props, d, ntime, fp, bp) {
     const promises = [];
     for (let prop in props) {
       let from, final;
       if (Array.isArray(props[prop])) [from, final] = props[prop];
       else final = props[prop];
       if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
-        promises.push(iterate(tg[prop], props[prop], d, ntime));
+        promises.push(iterate(tg[prop], props[prop], d, ntime, fp, bp));
       } else {
         promises.push(
           animateOne({
@@ -32,7 +34,9 @@ function animate({
             from,
             onUpdate,
             round,
-            delay: d
+            delay: d,
+            finalPercent: fp,
+            beforePercent: bp
           })
         );
       }
@@ -41,13 +45,19 @@ function animate({
   }
   let numTo = to,
     numDelay = delay,
-    numTime = time;
+    numTime = time,
+    numPer = finalPercent,
+    befPer = beforePercent;
   return Promise.all(
     targets.map((target, i) => {
       if (typeof to === 'function') numTo = to.call(target, i);
       if (typeof delay === 'function') numDelay = delay.call(target, i);
       if (typeof time === 'function') numTime = time.call(target, i);
-      return iterate(target, numTo, numDelay, numTime);
+      if (typeof finalPercent === 'function')
+        numPer = finalPercent.call(target, i);
+      if (typeof beforePercent === 'function')
+        befPer = beforePercent.call(target, i);
+      return iterate(target, numTo, numDelay, numTime, numPer, befPer);
     })
   );
 }

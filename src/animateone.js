@@ -1,5 +1,7 @@
 import Bezier from './bezier';
+import wait from './wait';
 import * as types from './types';
+
 const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
 const frames = new Set();
 
@@ -18,6 +20,8 @@ function animateOne({
   type = 'spring',
   onUpdate,
   round = false,
+  finalPercent = 1,
+  beforePercent = 0,
   delay = 0 // number
 }) {
   const toSplit = to.toString().split(digitRgx),
@@ -55,40 +59,53 @@ function animateOne({
   }
 
   const rawObj = { raw };
-  return new Promise((resolve, reject) => {
-    if (types[type]) type = types[type];
-    if (Array.isArray(type)) type = Bezier.fromArray(type);
-    else if (typeof type !== 'function')
-      return reject(
-        Error(
-          'type should be one of ' +
-            Object.keys(types).toString() +
-            ' or Bezier Array or Function, given ' +
-            type
-        )
-      );
+  const reverse = finalPercent < beforePercent;
+  return wait(delay).then(
+    () =>
+      new Promise((resolve, reject) => {
+        if (types[type]) type = types[type];
+        if (Array.isArray(type)) type = Bezier.fromArray(type);
+        else if (typeof type !== 'function')
+          return reject(
+            Error(
+              'type should be one of ' +
+                Object.keys(types).toString() +
+                ' or Bezier Array or Function, given ' +
+                type
+            )
+          );
 
-    const startTime = performance.now() + delay;
-    const frame = function(currentTime) {
-      const percent = (currentTime - startTime) / time,
-        bper = type(percent > 1 ? 1 : percent);
-      if (percent < 0) return;
-      const next = diffs.map((d, i) => {
-        const n = bper * d + fromNums[i];
-        return round ? Math.round(n) : n;
-      });
-      const val = String.raw(rawObj, ...next);
-      try {
-        target[prop] = Number(val) || val;
-        if (onUp) onUpdate(target, prop, target[prop]);
-        if (percent >= 1) resolve(frames.delete(frame));
-      } catch (e) {
-        frames.delete(frame);
-        reject(e);
-      }
-    };
-    frames.add(frame);
-  });
+        let lastTime = performance.now(),
+          percent = beforePercent;
+        const frame = function(currentTime) {
+          percent = reverse
+            ? percent - (currentTime - lastTime) / time
+            : percent + (currentTime - lastTime) / time;
+          lastTime = currentTime;
+          const bper = reverse
+            ? type(Math.max(percent, finalPercent))
+            : type(Math.min(percent, finalPercent));
+          const next = diffs.map((d, i) => {
+            const n = bper * d + fromNums[i];
+            return round ? Math.round(n) : n;
+          });
+          const val = String.raw(rawObj, ...next);
+          try {
+            target[prop] = Number(val) || val;
+            if (onUp) onUpdate(target, prop, target[prop]);
+            if (
+              (reverse ? percent <= finalPercent : percent >= finalPercent) ||
+              percent > 1
+            )
+              resolve(frames.delete(frame));
+          } catch (e) {
+            frames.delete(frame);
+            reject(e);
+          }
+        };
+        frames.add(frame);
+      })
+  );
 }
 
 export default animateOne;

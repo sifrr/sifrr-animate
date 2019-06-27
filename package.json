@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/sifrr/sifrr-animate/issues"
   },
-  "main": "dist/sifrr.animate.js",
+  "main": "dist/sifrr.animate.cjs.js",
   "module": "src/animate.js",
   "browser": "dist/sifrr.animate.js",
   "homepage": "https://github.com/sifrr/sifrr-animate",

@@ -66,6 +66,8 @@ this.Sifrr.animate = (function (exports) {
 
   }
 
+  const wait = (t => t > 0 ? new Promise(res => setTimeout(res, t)) : Promise.resolve(true));
+
   const linear = [0, 0, 1, 1];
   const ease = [0.25, 0.1, 0.25, 1];
   const easeIn = [0.42, 0, 1, 1];
@@ -101,6 +103,8 @@ this.Sifrr.animate = (function (exports) {
     type = 'spring',
     onUpdate,
     round = false,
+    finalPercent = 1,
+    beforePercent = 0,
     delay = 0
   }) {
     const toSplit = to.toString().split(digitRgx),
@@ -146,15 +150,17 @@ this.Sifrr.animate = (function (exports) {
     const rawObj = {
       raw
     };
-    return new Promise((resolve, reject) => {
+    const reverse = finalPercent < beforePercent;
+    return wait(delay).then(() => new Promise((resolve, reject) => {
       if (types[type]) type = types[type];
       if (Array.isArray(type)) type = Bezier.fromArray(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
-      const startTime = performance.now() + delay;
+      let lastTime = performance.now(),
+          percent = beforePercent;
 
       const frame = function (currentTime) {
-        const percent = (currentTime - startTime) / time,
-              bper = type(percent > 1 ? 1 : percent);
-        if (percent < 0) return;
+        percent = reverse ? percent - (currentTime - lastTime) / time : percent + (currentTime - lastTime) / time;
+        lastTime = currentTime;
+        const bper = reverse ? type(Math.max(percent, finalPercent)) : type(Math.min(percent, finalPercent));
         const next = diffs.map((d, i) => {
           const n = bper * d + fromNums[i];
           return round ? Math.round(n) : n;
@@ -164,7 +170,7 @@ this.Sifrr.animate = (function (exports) {
         try {
           target[prop] = Number(val) || val;
           if (onUp) onUpdate(target, prop, target[prop]);
-          if (percent >= 1) resolve(frames.delete(frame));
+          if ((reverse ? percent <= finalPercent : percent >= finalPercent) || percent > 1) resolve(frames.delete(frame));
         } catch (e) {
           frames.delete(frame);
           reject(e);
@@ -172,10 +178,8 @@ this.Sifrr.animate = (function (exports) {
       };
 
       frames.add(frame);
-    });
+    }));
   }
-
-  const wait = (t => t > 0 ? new Promise(res => setTimeout(res, t)) : Promise.resolve(true));
 
   function animate({
     targets,
@@ -185,11 +189,13 @@ this.Sifrr.animate = (function (exports) {
     type,
     onUpdate,
     round,
+    finalPercent,
+    beforePercent,
     delay
   }) {
     targets = targets ? Array.from(targets) : [target];
 
-    function iterate(tg, props, d, ntime) {
+    function iterate(tg, props, d, ntime, fp, bp) {
       const promises = [];
 
       for (let prop in props) {
@@ -197,7 +203,7 @@ this.Sifrr.animate = (function (exports) {
         if (Array.isArray(props[prop])) [from, final] = props[prop];else final = props[prop];
 
         if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
-          promises.push(iterate(tg[prop], props[prop], d, ntime));
+          promises.push(iterate(tg[prop], props[prop], d, ntime, fp, bp));
         } else {
           promises.push(animateOne({
             target: tg,
@@ -208,7 +214,9 @@ this.Sifrr.animate = (function (exports) {
             from,
             onUpdate,
             round,
-            delay: d
+            delay: d,
+            finalPercent: fp,
+            beforePercent: bp
           }));
         }
       }
@@ -218,12 +226,16 @@ this.Sifrr.animate = (function (exports) {
 
     let numTo = to,
         numDelay = delay,
-        numTime = time;
+        numTime = time,
+        numPer = finalPercent,
+        befPer = beforePercent;
     return Promise.all(targets.map((target, i) => {
       if (typeof to === 'function') numTo = to.call(target, i);
       if (typeof delay === 'function') numDelay = delay.call(target, i);
       if (typeof time === 'function') numTime = time.call(target, i);
-      return iterate(target, numTo, numDelay, numTime);
+      if (typeof finalPercent === 'function') numPer = finalPercent.call(target, i);
+      if (typeof beforePercent === 'function') befPer = beforePercent.call(target, i);
+      return iterate(target, numTo, numDelay, numTime, numPer, befPer);
     }));
   }
   function keyframes(arrOpts) {
