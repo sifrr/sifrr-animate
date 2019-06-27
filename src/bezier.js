@@ -1,22 +1,18 @@
 const beziers = {};
 
 class Bezier {
-  constructor(args) {
-    const key = args.join('_');
-    if (!beziers[key]) {
-      this.setProps(...args);
-      beziers[key] = this.final.bind(this);
-    }
+  static fromArray(arr) {
+    const key = arr.toString();
+    if (!beziers[key]) beziers[key] = new Bezier(...args).final.bind(this);
     return beziers[key];
   }
 
+  constructor(x1, y1, x2, y2) {
+    this.setProps(x1, y1, x2, y2);
+  }
+
   setProps(x1, y1, x2, y2) {
-    let props = {
-      x1,
-      y1,
-      x2,
-      y2
-    };
+    let props = { x1, y1, x2, y2 };
     const A = (a, b) => 1.0 - 3.0 * b + 3.0 * a;
     const B = (a, b) => 3.0 * b - 6.0 * a;
     const C = a => 3.0 * a;

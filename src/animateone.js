@@ -57,7 +57,7 @@ function animateOne({
   const rawObj = { raw };
   return new Promise((resolve, reject) => {
     if (types[type]) type = types[type];
-    if (Array.isArray(type)) type = new Bezier(type);
+    if (Array.isArray(type)) type = Bezier.fromArray(type);
     else if (typeof type !== 'function')
       return reject(
         Error(
