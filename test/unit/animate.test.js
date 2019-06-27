@@ -1,7 +1,6 @@
 const mock = require('mock-require');
 mock('../../src/animateone', sinon.spy());
-const animate = require('../../src/animate').default;
-const animateOne = require('../../src/animateone');
+const { animate, keyframes, animateOne } = require('../../src/animate');
 
 describe('animate', function() {
   after(() => {
@@ -152,7 +151,7 @@ describe('animate', function() {
 
   it('works with keyframes', async () => {
     const target = {};
-    await animate.keyframes([
+    await keyframes([
       {
         target,
         to: { a: 1 },

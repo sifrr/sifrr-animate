@@ -1,7 +1,3 @@
-global.window = {
-  requestAnimationFrame: () => {}
-};
-
 describe('animateOne', function() {
   it('throws error if type is not correct', async () => {
     let error;

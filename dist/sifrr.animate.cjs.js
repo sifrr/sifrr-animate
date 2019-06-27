@@ -1,6 +1,8 @@
 /*! sifrr-animate v0.0.3 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 const beziers = {};
 
 class Bezier {
@@ -224,23 +226,21 @@ function animate({
     return iterate(target, numTo, numDelay, numTime);
   }));
 }
-
-animate.types = types;
-animate.wait = wait;
-animate.animate = animate;
-animate.animateOne = animateOne;
-
-animate.keyframes = arrOpts => {
+function keyframes(arrOpts) {
   let promise = Promise.resolve(true);
   arrOpts.forEach(opts => {
     if (Array.isArray(opts)) promise = promise.then(() => Promise.all(opts.map(animate)));
     promise = promise.then(() => animate(opts));
   });
   return promise;
-};
+}
+const loop = fxn => fxn().then(() => loop(fxn));
 
-animate.loop = fxn => fxn().then(() => animate.loop(fxn));
-
-module.exports = animate;
+exports.animate = animate;
+exports.animateOne = animateOne;
+exports.keyframes = keyframes;
+exports.loop = loop;
+exports.types = types;
+exports.wait = wait;
 /*! (c) @aadityataparia */
 //# sourceMappingURL=sifrr.animate.cjs.js.map

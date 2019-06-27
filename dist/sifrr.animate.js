@@ -1,6 +1,6 @@
 /*! sifrr-animate v0.0.3 - sifrr project | MIT licensed | https://github.com/sifrr/sifrr-animate */
 this.Sifrr = this.Sifrr || {};
-this.Sifrr.animate = (function () {
+this.Sifrr.animate = (function (exports) {
   'use strict';
 
   const beziers = {};
@@ -226,25 +226,25 @@ this.Sifrr.animate = (function () {
       return iterate(target, numTo, numDelay, numTime);
     }));
   }
-
-  animate.types = types;
-  animate.wait = wait;
-  animate.animate = animate;
-  animate.animateOne = animateOne;
-
-  animate.keyframes = arrOpts => {
+  function keyframes(arrOpts) {
     let promise = Promise.resolve(true);
     arrOpts.forEach(opts => {
       if (Array.isArray(opts)) promise = promise.then(() => Promise.all(opts.map(animate)));
       promise = promise.then(() => animate(opts));
     });
     return promise;
-  };
+  }
+  const loop = fxn => fxn().then(() => loop(fxn));
 
-  animate.loop = fxn => fxn().then(() => animate.loop(fxn));
+  exports.animate = animate;
+  exports.animateOne = animateOne;
+  exports.keyframes = keyframes;
+  exports.loop = loop;
+  exports.types = types;
+  exports.wait = wait;
 
-  return animate;
+  return exports;
 
-}());
+}({}));
 /*! (c) @aadityataparia */
 //# sourceMappingURL=sifrr.animate.js.map

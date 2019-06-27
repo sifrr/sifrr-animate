@@ -132,9 +132,15 @@ loop(() => /* return any promise, eg. animate(...options), keyframes([...options
 then use
 
 ```js
-Sifrr.animate({...});
+Sifrr.animate.animate({...});
 Sifrr.animate.keyframes([...]);
 Sifrr.animate.wait(100);
 Sifrr.animate.loop(() => {});
 Sifrr.animate.types;
+```
+
+## CommonJs
+
+```js
+const { animate, types, keyframes, loop } = require('@sifrr/animate)
 ```

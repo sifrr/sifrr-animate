@@ -58,7 +58,12 @@ runTests({
   port,
   useJunitReporter,
   inspect,
-  reporters
+  reporters,
+  before: () => {
+    global.window = {
+      requestAnimationFrame: () => {}
+    };
+  }
 }).catch(e => {
   if (Number(e)) global.console.error(`${e} tests failed`);
   else global.console.error(e);
