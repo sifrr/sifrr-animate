@@ -2,6 +2,14 @@ const mock = require('mock-require');
 mock('../../src/animateone', sinon.spy());
 const { animate, keyframes, animateOne } = require('../../src/animate');
 
+function removeUndefined(obj) {
+  const newObj = {};
+  for (let p in obj) {
+    if (obj[p] !== undefined) newObj[p] = obj[p];
+  }
+  return newObj;
+}
+
 describe('animate', function() {
   after(() => {
     sinon.restore();
@@ -33,27 +41,21 @@ describe('animate', function() {
     });
 
     expect(animateOne.callCount).to.equal(2);
-    expect(animateOne.args[0][0]).to.deep.equal({
+    expect(removeUndefined(animateOne.args[0][0])).to.deep.equal({
       target: target,
       prop: 'b',
       to: 1000,
       time: 300,
       type: 'ease',
-      from: undefined,
-      onUpdate: undefined,
-      round: true,
-      delay: undefined
+      round: true
     });
-    expect(animateOne.args[1][0]).to.deep.equal({
+    expect(removeUndefined(animateOne.args[1][0])).to.deep.equal({
       target: target['a'],
       prop: 'd',
       to: 10,
       time: 300,
       type: 'ease',
-      from: undefined,
-      onUpdate: undefined,
-      round: true,
-      delay: undefined
+      round: true
     });
   });
 
@@ -71,16 +73,14 @@ describe('animate', function() {
     });
 
     expect(animateOne.callCount).to.equal(1);
-    expect(animateOne.args[0][0]).to.deep.equal({
+    expect(removeUndefined(animateOne.args[0][0])).to.deep.equal({
       target,
       prop: 'c',
       to: 100,
       time: 300,
       type: 'ease',
       from: 10,
-      onUpdate: undefined,
-      round: true,
-      delay: undefined
+      round: true
     });
   });
 
@@ -97,16 +97,11 @@ describe('animate', function() {
 
     expect(animateOne.callCount).to.equal(3);
     targets.forEach((t, i) => {
-      expect(animateOne.args[i][0]).to.deep.equal({
+      expect(removeUndefined(animateOne.args[i][0])).to.deep.equal({
         target: t,
         prop: 'a',
         to: 10,
-        time: 300,
-        type: undefined,
-        from: undefined,
-        onUpdate: undefined,
-        round: undefined,
-        delay: undefined
+        time: 300
       });
     });
   });
@@ -133,15 +128,11 @@ describe('animate', function() {
     });
 
     expect(animateOne.callCount).to.equal(1);
-    expect(animateOne.args[0][0]).to.deep.equal({
+    expect(removeUndefined(animateOne.args[0][0])).to.deep.equal({
       target,
       prop: 'a',
       to: 10,
       time: 300,
-      type: undefined,
-      from: undefined,
-      onUpdate: undefined,
-      round: undefined,
       delay: 0
     });
     expect(ii).to.equal(0);
@@ -182,15 +173,11 @@ describe('animate', function() {
 
     expect(animateOne.callCount).to.equal(4);
     for (let i = 0; i < 4; i++) {
-      expect(animateOne.args[i][0]).to.deep.equal({
+      expect(removeUndefined(animateOne.args[i][0])).to.deep.equal({
         target,
         prop: 'a',
         to: i + 1,
         time: 1,
-        type: undefined,
-        from: undefined,
-        onUpdate: undefined,
-        round: undefined,
         delay: 1
       });
     }
