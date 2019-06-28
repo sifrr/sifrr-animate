@@ -37,7 +37,9 @@ describe('animate', function() {
       },
       time: 300,
       type: 'ease',
-      round: true
+      round: true,
+      initialPercent: 0.2,
+      finalPercent: 0.8
     });
 
     expect(animateOne.callCount).to.equal(2);
@@ -47,7 +49,9 @@ describe('animate', function() {
       to: 1000,
       time: 300,
       type: 'ease',
-      round: true
+      round: true,
+      initialPercent: 0.2,
+      finalPercent: 0.8
     });
     expect(removeUndefined(animateOne.args[1][0])).to.deep.equal({
       target: target['a'],
@@ -55,7 +59,9 @@ describe('animate', function() {
       to: 10,
       time: 300,
       type: 'ease',
-      round: true
+      round: true,
+      initialPercent: 0.2,
+      finalPercent: 0.8
     });
   });
 
@@ -108,7 +114,7 @@ describe('animate', function() {
 
   it('works with functions', async () => {
     const target = {};
-    let ii, jj, kk;
+    let ii, jj, kk, ll, mm;
     animate({
       target,
       to: i => {
@@ -124,6 +130,14 @@ describe('animate', function() {
       delay: k => {
         kk = k;
         return 0;
+      },
+      initialPercent: i => {
+        ll = i;
+        return 0.5;
+      },
+      finalPercent: i => {
+        mm = i;
+        return 0.7;
       }
     });
 
@@ -133,11 +147,15 @@ describe('animate', function() {
       prop: 'a',
       to: 10,
       time: 300,
-      delay: 0
+      delay: 0,
+      initialPercent: 0.5,
+      finalPercent: 0.7
     });
     expect(ii).to.equal(0);
     expect(jj).to.equal(0);
     expect(kk).to.equal(0);
+    expect(ll).to.equal(0);
+    expect(mm).to.equal(0);
   });
 
   it('works with keyframes', async () => {

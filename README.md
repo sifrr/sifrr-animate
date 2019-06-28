@@ -66,9 +66,11 @@ wait(1000 /* in ms */).then(() => {
 - `round` - round off animated values or not
 - `onUpdate` - this function will be called on update with arguments `object`, `property`, `currentValue`, doing heavy lifting here can cause laggy animation
 - `delay` - (in miliseconds) number or function, delay before start of animation (in ms)
+- `initialPercent` - (between 0 and 1) default `0`, initial x-percent value to start animation from
+- `finalPercent` - (between 0 and 1) default `1`, final x-percent value to end animation at
 
 If from values are not given (or object doesn't have that property), they will start from 0.
-If a function for `time`, `delay`, `to` is given, it will be called with index of target to animate (starting from 0) and return value will be used as corresponding value for that target. `this` inside these functions is `target`.
+If a function for `time`, `delay`, `to`, `initialPercent` or `finalPercent` is given, it will be called with index of target to animate (starting from 0) and return value will be used as corresponding value for that target. `this` inside these functions is `target`.
 
 You can add more types using bezier function values:
 

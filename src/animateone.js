@@ -21,7 +21,7 @@ function animateOne({
   onUpdate,
   round = false,
   finalPercent = 1,
-  beforePercent = 0,
+  initialPercent = 0,
   delay = 0 // number
 }) {
   const toSplit = to.toString().split(digitRgx),
@@ -59,7 +59,7 @@ function animateOne({
   }
 
   const rawObj = { raw };
-  const reverse = finalPercent < beforePercent;
+  const reverse = finalPercent < initialPercent;
   return wait(delay).then(
     () =>
       new Promise((resolve, reject) => {
@@ -76,7 +76,7 @@ function animateOne({
           );
 
         let lastTime = performance.now(),
-          percent = beforePercent;
+          percent = initialPercent;
         const frame = function(currentTime) {
           percent = reverse
             ? percent - (currentTime - lastTime) / time

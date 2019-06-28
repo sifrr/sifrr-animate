@@ -11,7 +11,7 @@ function animate({
   onUpdate,
   round,
   finalPercent,
-  beforePercent,
+  initialPercent,
   delay // number or function
 }) {
   targets = targets ? Array.from(targets) : [target];
@@ -36,7 +36,7 @@ function animate({
             round,
             delay: d,
             finalPercent: fp,
-            beforePercent: bp
+            initialPercent: bp
           })
         );
       }
@@ -47,7 +47,7 @@ function animate({
     numDelay = delay,
     numTime = time,
     numPer = finalPercent,
-    befPer = beforePercent;
+    befPer = initialPercent;
   return Promise.all(
     targets.map((target, i) => {
       if (typeof to === 'function') numTo = to.call(target, i);
@@ -55,8 +55,8 @@ function animate({
       if (typeof time === 'function') numTime = time.call(target, i);
       if (typeof finalPercent === 'function')
         numPer = finalPercent.call(target, i);
-      if (typeof beforePercent === 'function')
-        befPer = beforePercent.call(target, i);
+      if (typeof initialPercent === 'function')
+        befPer = initialPercent.call(target, i);
       return iterate(target, numTo, numDelay, numTime, numPer, befPer);
     })
   );

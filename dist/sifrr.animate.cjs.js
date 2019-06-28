@@ -104,7 +104,7 @@ function animateOne({
   onUpdate,
   round = false,
   finalPercent = 1,
-  beforePercent = 0,
+  initialPercent = 0,
   delay = 0
 }) {
   const toSplit = to.toString().split(digitRgx),
@@ -150,12 +150,12 @@ function animateOne({
   const rawObj = {
     raw
   };
-  const reverse = finalPercent < beforePercent;
+  const reverse = finalPercent < initialPercent;
   return wait(delay).then(() => new Promise((resolve, reject) => {
     if (types[type]) type = types[type];
     if (Array.isArray(type)) type = Bezier.fromArray(type);else if (typeof type !== 'function') return reject(Error('type should be one of ' + Object.keys(types).toString() + ' or Bezier Array or Function, given ' + type));
     let lastTime = performance.now(),
-        percent = beforePercent;
+        percent = initialPercent;
 
     const frame = function (currentTime) {
       percent = reverse ? percent - (currentTime - lastTime) / time : percent + (currentTime - lastTime) / time;
@@ -190,7 +190,7 @@ function animate({
   onUpdate,
   round,
   finalPercent,
-  beforePercent,
+  initialPercent,
   delay
 }) {
   targets = targets ? Array.from(targets) : [target];
@@ -216,7 +216,7 @@ function animate({
           round,
           delay: d,
           finalPercent: fp,
-          beforePercent: bp
+          initialPercent: bp
         }));
       }
     }
@@ -228,13 +228,13 @@ function animate({
       numDelay = delay,
       numTime = time,
       numPer = finalPercent,
-      befPer = beforePercent;
+      befPer = initialPercent;
   return Promise.all(targets.map((target, i) => {
     if (typeof to === 'function') numTo = to.call(target, i);
     if (typeof delay === 'function') numDelay = delay.call(target, i);
     if (typeof time === 'function') numTime = time.call(target, i);
     if (typeof finalPercent === 'function') numPer = finalPercent.call(target, i);
-    if (typeof beforePercent === 'function') befPer = beforePercent.call(target, i);
+    if (typeof initialPercent === 'function') befPer = initialPercent.call(target, i);
     return iterate(target, numTo, numDelay, numTime, numPer, befPer);
   }));
 }
