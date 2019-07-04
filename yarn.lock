@@ -776,10 +776,10 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@sifrr/dev@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.18.tgz#d2e2116985829f933a85b12a0ac1efef7b8743d5"
-  integrity sha512-rhkT3yAcnsmmjmytdicV58Z8/D2cizYyZvjcGYfMIirJM9rIn4Ch3dCGYVMaSgJQY87cM+yhDpWa7EscjHkU2w==
+"@sifrr/dev@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.19.tgz#857c64db58f87eb2ca3515781a2b2bc8d96d6c2d"
+  integrity sha512-ovcP/O3OvoslqgXYUfHiON7NYmanbXn3kc8+0HSrSzc5Y+ehl+uIG8jLNXqbjgY1/seYEfJQ2PyOxr0D29nGVQ==
   dependencies:
     "@babel/core" "^7.4.0"
     "@babel/plugin-external-helpers" "^7.2.0"
@@ -6390,7 +6390,7 @@ typescript@^3.5.2:
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
 "uWebSockets.js@github:uNetworking/uWebSockets.js#v15.11.0":
-  version "15.11.0"
+  version "15.10.0"
   resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/e7552889a50a7ffa654c41c99a9bad46dd0024c5"
 
 uWebSockets.js@uNetworking/uWebSockets.js#v15.10.0:
