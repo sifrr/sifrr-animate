@@ -64,9 +64,11 @@ runTests({
       requestAnimationFrame: () => {}
     };
   }
-}).catch(e => {
-  if (Number(e)) global.console.error(`${e} tests failed`);
-  else global.console.error(e);
-
-  process.exit(1);
+}).then(({ failures, coverage }) => {
+  console.table(coverage);
+  if (failures > 0) {
+    global.console.error(`${failures} tests failed`);
+    process.exit(1);
+  }
+  global.console.log('All tests passed.');
 });

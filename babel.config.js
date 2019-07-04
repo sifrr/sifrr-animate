@@ -4,7 +4,6 @@ module.exports = function(api) {
     [
       '@babel/env',
       {
-        modules: false,
         targets: require('./package.json').browserslist
       }
     ]

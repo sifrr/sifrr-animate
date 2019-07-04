@@ -1,6 +1,4 @@
 const mock = require('mock-require');
-mock('../../src/animateone', sinon.spy());
-const { animate, keyframes, animateOne } = require('../../src/animate');
 
 function removeUndefined(obj) {
   const newObj = {};
@@ -11,6 +9,9 @@ function removeUndefined(obj) {
 }
 
 describe('animate', function() {
+  mock('../../src/animateone', sinon.spy());
+  const { animate, keyframes, animateOne } = require('../../src/animate');
+
   after(() => {
     sinon.restore();
     mock.stop('../../src/animateone');
