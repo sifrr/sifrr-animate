@@ -10,8 +10,8 @@ export type animFxn = (x: number) => number;
 
 const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
 const frames: Set<frameFunction> = new Set();
-
 ////
+
 function runFrames(currentTime: number) {
   frames.forEach(f => f(currentTime));
   window.requestAnimationFrame(runFrames);
@@ -54,7 +54,7 @@ function animateOne({
   const onUp = typeof onUpdate === 'function';
   for (let i = 0; i < l; i++) {
     const fn = Number(fromSplit[i]) || 0;
-    let tn;
+    let tn: number;
     if (toSplit[i][1] === '=') {
       tn = Number(toSplit[i].slice(2));
       switch (toSplit[i][0]) {

@@ -42,10 +42,10 @@ class Bezier implements Bezier {
 
   final(x: number) {
     if (this.x1 == this.y1 && this.x2 == this.y2) return x;
-    return this.calcBezier(this.GetTForX(x), this.y1, this.y2);
+    return this.calcBezier(this.getTForX(x), this.y1, this.y2);
   }
 
-  GetTForX(xx: number): number {
+  getTForX(xx: number): number {
     let t = xx;
     for (let i = 0; i < 4; ++i) {
       let slope = this.getSlope(t);
