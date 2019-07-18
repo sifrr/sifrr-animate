@@ -2,10 +2,17 @@ import Bezier from './bezier';
 import wait from './wait';
 import * as types from './types';
 
-const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
-const frames = new Set();
+// Types and interfaces
+interface frameFunction {
+  (time: number): void;
+}
+export type animFxn = (x: number) => number;
 
-function runFrames(currentTime) {
+const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
+const frames: Set<frameFunction> = new Set();
+
+////
+function runFrames(currentTime: number) {
   frames.forEach(f => f(currentTime));
   window.requestAnimationFrame(runFrames);
 }
@@ -23,13 +30,27 @@ function animateOne({
   finalPercent = 1,
   initialPercent = 0,
   delay = 0 // number
+}: {
+  target: HTMLElement;
+  prop: string;
+  from: any;
+  to: any;
+  time: number;
+  type: string | [number, number, number, number] | animFxn;
+  onUpdate(target: HTMLElement, prop: string, val: any): void;
+  round: boolean;
+  finalPercent: number;
+  initialPercent: number;
+  delay: number;
 }) {
   const toSplit = to.toString().split(digitRgx),
     l = toSplit.length,
-    raw = [],
-    fromNums = [],
-    diffs = [];
-  const fromSplit = (from || target[prop] || '').toString().split(digitRgx);
+    raw: string[] = [],
+    fromNums: number[] = [],
+    diffs: number[] = [];
+  const fromSplit: any[] = (from || target[prop] || '')
+    .toString()
+    .split(digitRgx);
   const onUp = typeof onUpdate === 'function';
   for (let i = 0; i < l; i++) {
     const fn = Number(fromSplit[i]) || 0;
@@ -58,13 +79,13 @@ function animateOne({
     }
   }
 
-  const rawObj = { raw };
   const reverse = finalPercent < initialPercent;
   return wait(delay).then(
     () =>
       new Promise((resolve, reject) => {
-        if (types[type]) type = types[type];
-        if (Array.isArray(type)) type = Bezier.fromArray(type);
+        let typeFxn: animFxn;
+        if (typeof type === 'string') typeFxn = types[type];
+        if (Array.isArray(type)) typeFxn = Bezier.fromArray(type);
         else if (typeof type !== 'function')
           return reject(
             Error(
@@ -77,19 +98,26 @@ function animateOne({
 
         let lastTime = performance.now(),
           percent = initialPercent;
-        const frame = function(currentTime) {
+        const frame: frameFunction = function(currentTime) {
           percent = reverse
             ? percent - (currentTime - lastTime) / time
             : percent + (currentTime - lastTime) / time;
           lastTime = currentTime;
           const bper = reverse
-            ? type(Math.max(percent, finalPercent))
-            : type(Math.min(percent, finalPercent));
+            ? typeFxn(Math.max(percent, finalPercent))
+            : typeFxn(Math.min(percent, finalPercent));
           const next = diffs.map((d, i) => {
             const n = bper * d + fromNums[i];
             return round ? Math.round(n) : n;
           });
-          const val = String.raw(rawObj, ...next);
+          const val = raw
+            .map((chunk, i) => {
+              if (raw.length <= i) {
+                return chunk;
+              }
+              return next[i - 1] ? next[i - 1] + chunk : chunk;
+            })
+            .join('');
           try {
             target[prop] = Number(val) || val;
             if (onUp) onUpdate(target, prop, target[prop]);

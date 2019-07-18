@@ -10,7 +10,7 @@ function moduleConfig(name, root, minify = false, type) {
   return getRollupConfig(
     {
       name,
-      inputFile: path.join(root, `./src/animate.js`),
+      inputFile: path.join(root, `./src/animate.ts`),
       outputFolder: path.join(root, './dist'),
       outputFileName: 'sifrr.animate',
       minify,

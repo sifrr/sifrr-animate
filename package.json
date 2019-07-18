@@ -21,6 +21,7 @@
   "main": "dist/sifrr.animate.cjs.js",
   "module": "src/animate.js",
   "browser": "dist/sifrr.animate.js",
+  "types": "dist/types/animate.d.ts",
   "homepage": "https://github.com/sifrr/sifrr-animate",
   "browserslist": [
     "chrome >= 55",

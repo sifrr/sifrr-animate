@@ -19,3 +19,4 @@ typings/
 .env
 .next
 .DS_Store
+.ts_cache

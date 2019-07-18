@@ -1,21 +1,45 @@
-import animateOne from './animateone';
+import animateOne, { animFxn } from './animateone';
 import * as types from './types';
 import wait from './wait';
+
+// types and interfaces
+type numFxn = (a: number) => number;
+type numberOrFxn = number | numFxn | any; // any because bind/call is not type safe
+type animateOpts = {
+  targets: HTMLElement[];
+  target: HTMLElement;
+  to: object | ((a: number) => object);
+  time: numberOrFxn;
+  type: animFxn;
+  onUpdate: any;
+  round: boolean;
+  finalPercent: numberOrFxn;
+  initialPercent: numberOrFxn;
+  delay: numberOrFxn;
+};
+////
 
 function animate({
   targets,
   target,
-  to, // object or function
-  time, // number or function
+  to,
+  time,
   type,
   onUpdate,
   round,
   finalPercent,
   initialPercent,
-  delay // number or function
-}) {
+  delay
+}: animateOpts): Promise<any> {
   targets = targets ? Array.from(targets) : [target];
-  function iterate(tg, props, d, ntime, fp, bp) {
+  function iterate(
+    tg: HTMLElement,
+    props: object,
+    d: number,
+    ntime: number,
+    fp: number,
+    bp: number
+  ) {
     const promises = [];
     for (let prop in props) {
       let from, final;
@@ -63,8 +87,8 @@ function animate({
 }
 
 export { types, wait, animate, animateOne };
-export function keyframes(arrOpts) {
-  let promise = Promise.resolve(true);
+export function keyframes(arrOpts: animateOpts[]): Promise<any> {
+  let promise = Promise.resolve(null);
   arrOpts.forEach(opts => {
     if (Array.isArray(opts))
       promise = promise.then(() => Promise.all(opts.map(animate)));
@@ -72,4 +96,4 @@ export function keyframes(arrOpts) {
   });
   return promise;
 }
-export const loop = fxn => fxn().then(() => loop(fxn));
+export const loop = (fxn: Function) => fxn().then(() => loop(fxn));
