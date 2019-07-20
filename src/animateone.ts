@@ -84,9 +84,9 @@ function animateOne({
     () =>
       new Promise((resolve, reject) => {
         let typeFxn: animFxn;
-        if (typeof type === 'string') typeFxn = types[type];
-        if (Array.isArray(type)) typeFxn = Bezier.fromArray(type);
-        else if (typeof type !== 'function')
+        if (typeof type === 'string') typeFxn = Bezier.fromArray(types[type]);
+        else if (Array.isArray(type)) typeFxn = Bezier.fromArray(type);
+        else if (typeof type !== 'function') {
           return reject(
             Error(
               'type should be one of ' +
@@ -95,6 +95,9 @@ function animateOne({
                 type
             )
           );
+        } else {
+          typeFxn = type;
+        }
 
         let lastTime = performance.now(),
           percent = initialPercent;
