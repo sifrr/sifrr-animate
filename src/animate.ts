@@ -30,7 +30,7 @@ function animate({
   finalPercent,
   initialPercent,
   delay
-}: animateOpts): Promise<any> {
+}: animateOpts): Promise<boolean[][]> {
   targets = targets ? Array.from(targets) : [target];
   function iterate(
     tg: HTMLElement,

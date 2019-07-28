@@ -42,7 +42,7 @@ function animateOne({
   finalPercent: number;
   initialPercent: number;
   delay: number;
-}) {
+}): Promise<boolean> {
   const toSplit = to.toString().split(digitRgx),
     l = toSplit.length,
     raw: string[] = [],
