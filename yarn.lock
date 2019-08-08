@@ -286,6 +286,14 @@
     "@babel/helper-remap-async-to-generator" "^7.1.0"
     "@babel/plugin-syntax-async-generators" "^7.2.0"
 
+"@babel/plugin-proposal-class-properties@^7.5.5":
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.5.5.tgz#a974cfae1e37c3110e71f3c6a2e48b8e71958cd4"
+  integrity sha512-AF79FsnWFxjlaosgdi421vmYG6/jg79bVD0dpD44QdgobzHKuLZ6S3vl8la9qIeSwGi8i1fS0O1mfuDAAdo1/A==
+  dependencies:
+    "@babel/helper-create-class-features-plugin" "^7.5.5"
+    "@babel/helper-plugin-utils" "^7.0.0"
+
 "@babel/plugin-proposal-json-strings@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-json-strings/-/plugin-proposal-json-strings-7.2.0.tgz#568ecc446c6148ae6b267f02551130891e29f317"
@@ -876,20 +884,21 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@sifrr/dev@^0.0.26":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.26.tgz#7e98409a13ce77a3f76dc01acf73cc7da8a80a61"
-  integrity sha512-fkji6F5KtjVz/P7C5B1ReUo/uQtLmcMAbD7CRxhEhq4rtDU8xRyrSVuiHgQ7nohIuCLqrzoijm8+iNEwcdJ/9A==
+"@sifrr/dev@^0.0.27":
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.27.tgz#f975d803860d5c643a3763f02c072f324e2ade49"
+  integrity sha512-MGvOd1+lu3O0+fv0BpTHUz6JLw1r3sby7sgXOnryw7H3AhNkLH/0NBiTxZKbfRNvaeNTyhdQBemTFCaAk57HtA==
   dependencies:
     "@babel/core" "^7.4.0"
     "@babel/plugin-external-helpers" "^7.2.0"
+    "@babel/plugin-proposal-class-properties" "^7.5.5"
     "@babel/preset-env" "^7.4.1"
     "@babel/preset-typescript" "^7.3.3"
     "@babel/register" "^7.4.4"
     "@commitlint/cli" "^8.0.0"
     "@commitlint/config-conventional" "^8.0.0"
     "@sifrr/eslint-config" "^0.0.2"
-    "@sifrr/fetch" "^0.0.5"
+    "@sifrr/fetch" "^0.0.6"
     "@sifrr/server" "^0.0.5"
     autoprefixer "^9.6.0"
     babel-plugin-istanbul "^5.1.4"
@@ -943,10 +952,10 @@
     eslint-plugin-mocha "^5.3.0"
     eslint-plugin-prettier "^3.1.0"
 
-"@sifrr/fetch@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@sifrr/fetch/-/fetch-0.0.5.tgz#1ebc78447fe47c5ccffa9576dd5b266906fb80ac"
-  integrity sha512-oUxgFNsSO/RltRPrhNg/U1NW3NVYbTCi4J7ml6A5gGnDBkzuVnHK233ai/Ho/mOogDzHxobdTRs1W9iAdhoyQQ==
+"@sifrr/fetch@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@sifrr/fetch/-/fetch-0.0.6.tgz#4baa1e363f012f0df9cdf77fecd406ccd8246e34"
+  integrity sha512-nYMaDakLcSRN8yuXsSZ4sDOKqST1JTsFlcHONhcvA74wlX/kReImef4bADRX3H84VMgyKBs+gHqkTg5yQV5/5Q==
 
 "@sifrr/server@^0.0.5":
   version "0.0.5"
