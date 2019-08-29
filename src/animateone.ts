@@ -7,10 +7,10 @@ interface frameFunction {
   (time: number): void;
 }
 export type animFxn = (x: number) => number;
+//
 
 const digitRgx = /((?:[+\-*/]=)?-?\d+\.?\d*)/;
 const frames: Set<frameFunction> = new Set();
-////
 
 function runFrames(currentTime: number) {
   frames.forEach(f => f(currentTime));
