@@ -8,6 +8,7 @@ if [[ $COVERAGE == 'true' ]]; then
   rm -rf ./.nyc_output
 fi
 
+yarn build
 echo "Running test in `pwd`:"
 node ./scripts/test/run.js "./" "$@"
 
