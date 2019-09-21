@@ -879,10 +879,10 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@sifrr/dev@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.30.tgz#bb6b1382f094a15f8b7ad4ecb75c82507bad3f26"
-  integrity sha512-3yIOqVDHBWDMkyGJG+lJmd/62C4AUYD5Of4pNsOu+sae0/VCS86MmWXMVSn9XNiHLx9b68NLBBO1rZ4RcA/tqg==
+"@sifrr/dev@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.31.tgz#9a735de2b871b59cebb6fe543b1abe1da8b288d5"
+  integrity sha512-6McZLnk0WkHodzBUsKeLLqGmX9yD5PBvR2ABJ0YHT2lmSgqDfu6+XBrh+M/vsgEZqPCm5WLZ7bYe6cVwARRQIg==
   dependencies:
     "@babel/core" "^7.5.5"
     "@babel/plugin-external-helpers" "^7.2.0"
@@ -891,7 +891,7 @@
     "@babel/register" "^7.5.5"
     "@commitlint/cli" "^8.1.0"
     "@commitlint/config-conventional" "^8.1.0"
-    "@sifrr/eslint-config" "^0.0.3"
+    "@sifrr/eslint-config" "^0.0.4"
     "@sifrr/fetch" "^0.0.6"
     "@sifrr/server" "^0.0.6"
     autoprefixer "^9.6.1"
@@ -933,12 +933,12 @@
     rollup-plugin-typescript2 "^0.24.0"
     sinon "^7.4.1"
     typescript "^3.5.3"
-    uWebSockets.js uNetworking/uWebSockets.js#v15.11.0
+    uWebSockets.js "github:uNetworking/uWebSockets.js#v15.11.0"
 
-"@sifrr/eslint-config@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@sifrr/eslint-config/-/eslint-config-0.0.3.tgz#ca06c84b2eeb605f174ebb0f2375f7f6014a3191"
-  integrity sha512-/me2FvsaoQrJJOFTazEjQGN2wAmqyXYzL2IdZYGn1ujMj2pk+PathJy908CCpPclNUgmamjflm4zE1DJcEwSoQ==
+"@sifrr/eslint-config@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@sifrr/eslint-config/-/eslint-config-0.0.4.tgz#c6108b5249e06a2ebad3583a958895167a515cbc"
+  integrity sha512-75bW9MU6L0NGwOJeog+hY+AOlWX7+IEy39e7ECimIU7EMU5sQ5NYjCvJlVgcQbL46mfgEx5lyONEkQ/UfIP7SQ==
   dependencies:
     babel-eslint "^10.0.2"
     eslint "^6.0.1"
@@ -1362,16 +1362,7 @@ browser-stdout@1.3.1:
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.1.tgz#baa559ee14ced73452229bad7326467c61fabd60"
   integrity sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==
 
-browserslist@^4.0.0, browserslist@^4.6.0:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.6.1.tgz#ee5059b1aec18cbec9d055d6cb5e24ae50343a9b"
-  integrity sha512-1MC18ooMPRG2UuVFJTHFIAkk6mpByJfxCrnUyvSlu/hyQSFHMrlhM02SzNuCV+quTP4CKmqtOMAIjrifrpBJXQ==
-  dependencies:
-    caniuse-lite "^1.0.30000971"
-    electron-to-chromium "^1.3.137"
-    node-releases "^1.1.21"
-
-browserslist@^4.6.3, browserslist@^4.6.6:
+browserslist@^4.0.0, browserslist@^4.6.0, browserslist@^4.6.3, browserslist@^4.6.6:
   version "4.6.6"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.6.6.tgz#6e4bf467cde520bc9dbdf3747dafa03531cec453"
   integrity sha512-D2Nk3W9JL9Fp/gIcWei8LrERCS+eXu9AM5cfXA8WEZ84lFks+ARnZ0q/R69m2SV3Wjma83QDDPxsNKXUwdIsyA==
@@ -1480,11 +1471,6 @@ caniuse-lite@^1.0.0:
   version "1.0.30000973"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000973.tgz#2f8e8e54f9e6c5b7a631c9e69bfa1093d8cfd360"
   integrity sha512-/F3t/Yo8LEdRSEPCmI15fLu5vepVh9UCg/9inJXF5AAfW7xRRJkbaM2ut52iRMQMnGCLQouLbFdbOA+VEFOIsg==
-
-caniuse-lite@^1.0.30000971:
-  version "1.0.30000971"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000971.tgz#d1000e4546486a6977756547352bc96a4cfd2b13"
-  integrity sha512-TQFYFhRS0O5rdsmSbF1Wn+16latXYsQJat66f7S7lizXW1PVpWJeZw9wqqVLIjuxDRz7s7xRUj13QCfd8hKn6g==
 
 caniuse-lite@^1.0.30000980, caniuse-lite@^1.0.30000984:
   version "1.0.30000989"
@@ -2324,11 +2310,6 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
-
-electron-to-chromium@^1.3.137:
-  version "1.3.137"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.137.tgz#ba7c88024984c038a5c5c434529aabcea7b42944"
-  integrity sha512-kGi32g42a8vS/WnYE7ELJyejRT7hbr3UeOOu0WeuYuQ29gCpg9Lrf6RdcTQVXSt/v0bjCfnlb/EWOOsiKpTmkw==
 
 electron-to-chromium@^1.3.191:
   version "1.3.244"
@@ -4157,13 +4138,6 @@ node-modules-regexp@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
-
-node-releases@^1.1.21:
-  version "1.1.21"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.21.tgz#46c86f9adaceae4d63c75d3c2f2e6eee618e55f3"
-  integrity sha512-TwnURTCjc8a+ElJUjmDqU6+12jhli1Q61xOQmdZ7ECZVBZuQpN/1UnembiIHDM1wCcfLvh5wrWXUF5H6ufX64Q==
-  dependencies:
-    semver "^5.3.0"
 
 node-releases@^1.1.25:
   version "1.1.28"
@@ -6165,7 +6139,7 @@ typescript@^3.5.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
   integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
-uWebSockets.js@uNetworking/uWebSockets.js#v15.11.0:
+"uWebSockets.js@github:uNetworking/uWebSockets.js#v15.11.0":
   version "15.11.0"
   uid e7552889a50a7ffa654c41c99a9bad46dd0024c5
   resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/e7552889a50a7ffa654c41c99a9bad46dd0024c5"
