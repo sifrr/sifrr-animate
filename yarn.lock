@@ -980,10 +980,10 @@
     magic-string "^0.25.2"
     rollup-pluginutils "^2.6.0"
 
-"@sifrr/dev@^0.0.41":
-  version "0.0.41"
-  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.41.tgz#daf5da746d20f612bbe37c693ff4560b16fa189f"
-  integrity sha512-viNROcnIHopdrkyD+9K5S3JS8XC0bK7oyubG9UicY7KRmxAMXxW7GLF8gBZbQ0qDSmGMEB+9aQlibDVafuAQHA==
+"@sifrr/dev@^0.0.42":
+  version "0.0.42"
+  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.42.tgz#eab17f085af17063a11a5defba83dbb807f053f5"
+  integrity sha512-QDQ4uCs8y5DB3EzWL/ozrlH7czZlTeMjUEPVMrWkoYj9qMswAoQSHUgBJeFllRDlsdZ4ti5oAHMMwnivDS7yeg==
   dependencies:
     "@babel/core" "^7.5.5"
     "@babel/plugin-external-helpers" "^7.2.0"
@@ -1034,7 +1034,7 @@
     rollup-plugin-typescript2 "^0.25.2"
     sinon "^8.0.1"
     typescript "^3.5.3"
-    uWebSockets.js "github:uNetworking/uWebSockets.js#v16.5.0"
+    uWebSockets.js "github:uNetworking/uWebSockets.js#v17.0.0"
 
 "@sifrr/eslint-config@^0.0.4":
   version "0.0.4"
@@ -6309,10 +6309,10 @@ typescript@^3.5.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
   integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
-"uWebSockets.js@github:uNetworking/uWebSockets.js#v16.5.0":
-  version "16.5.0"
-  uid "69026e121ae4a8d4f285c68b565710ef697b5dac"
-  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/69026e121ae4a8d4f285c68b565710ef697b5dac"
+"uWebSockets.js@github:uNetworking/uWebSockets.js#v17.0.0":
+  version "17.0.0"
+  uid e7afaaf5c96311578b3c4477f662d02aab2e41ec
+  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/e7afaaf5c96311578b3c4477f662d02aab2e41ec"
 
 uglify-js@3.4.x:
   version "3.4.10"
