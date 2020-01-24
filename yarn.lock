@@ -980,10 +980,10 @@
     magic-string "^0.25.2"
     rollup-pluginutils "^2.6.0"
 
-"@sifrr/dev@^0.0.42":
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.42.tgz#eab17f085af17063a11a5defba83dbb807f053f5"
-  integrity sha512-QDQ4uCs8y5DB3EzWL/ozrlH7czZlTeMjUEPVMrWkoYj9qMswAoQSHUgBJeFllRDlsdZ4ti5oAHMMwnivDS7yeg==
+"@sifrr/dev@^0.0.44":
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/@sifrr/dev/-/dev-0.0.44.tgz#ef892d79ed9bd278ef7e3351942ed8a4e42b5c3c"
+  integrity sha512-pqBn94TGYFwE42ZEHfGb8CTdWIfLwn6DNHQXay94Pz6mXQJv1ggxtS8NnyqF2CP5uyMY2KklZxI84IqysLILUA==
   dependencies:
     "@babel/core" "^7.5.5"
     "@babel/plugin-external-helpers" "^7.2.0"
@@ -1006,13 +1006,13 @@
     cssnano "^4.1.10"
     graphql "^14.5.3"
     husky "^4.0.0"
-    istanbul-api "^3.0.0"
-    istanbul-lib-coverage "^3.0.0"
-    istanbul-lib-hook "^3.0.0"
-    istanbul-lib-instrument "^4.0.0"
-    istanbul-lib-report "^3.0.0"
-    istanbul-lib-source-maps "^4.0.0"
-    istanbul-reports "^3.0.0"
+    istanbul-api "^2.1.6"
+    istanbul-lib-coverage "^2.0.5"
+    istanbul-lib-hook "^2.0.7"
+    istanbul-lib-instrument "^3.3.0"
+    istanbul-lib-report "^2.0.8"
+    istanbul-lib-source-maps "^3.0.6"
+    istanbul-reports "^2.2.6"
     json-fn "^1.1.1"
     mocha "^7.0.0"
     mocha-junit-reporter "^1.23.1"
@@ -1034,7 +1034,7 @@
     rollup-plugin-typescript2 "^0.25.2"
     sinon "^8.0.1"
     typescript "^3.5.3"
-    uWebSockets.js "github:uNetworking/uWebSockets.js#v17.0.0"
+    uWebSockets.js "github:uNetworking/uWebSockets.js#v17.1.0"
 
 "@sifrr/eslint-config@^0.0.4":
   version "0.0.4"
@@ -1262,13 +1262,6 @@ append-transform@^1.0.0:
   integrity sha512-P009oYkeHyU742iSZJzZZywj4QRJdnTWffaKuJQLablCZ1uz6/cW4yaRgcDaoQ+uwOxxnt0gRUcwfsNP2ri0gw==
   dependencies:
     default-require-extensions "^2.0.0"
-
-append-transform@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/append-transform/-/append-transform-2.0.0.tgz#99d9d29c7b38391e6f428d28ce136551f0b77e12"
-  integrity sha512-7yeyCEurROLQJFv5Xj4lEGTy0borxepjFv1g22oAdqFu//SrAlDl1O1Nxx15SH1RoliUml6p8dwJW9jvZughhg==
-  dependencies:
-    default-require-extensions "^3.0.0"
 
 aproba@^1.0.3:
   version "1.2.0"
@@ -2393,13 +2386,6 @@ default-require-extensions@^2.0.0:
   integrity sha1-9fj7sYp9bVCyH2QfZJ67Uiz+JPc=
   dependencies:
     strip-bom "^3.0.0"
-
-default-require-extensions@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/default-require-extensions/-/default-require-extensions-3.0.0.tgz#e03f93aac9b2b6443fc52e5e4a37b3ad9ad8df96"
-  integrity sha512-ek6DpXq/SCpvjhpFsLFRVtIxJCRw6fUR42lYMVZuUMK7n8eMz4Uh5clckdBjEpLhn/gEBZo7hDJnJcwdKLKQjg==
-  dependencies:
-    strip-bom "^4.0.0"
 
 define-properties@^1.1.2, define-properties@^1.1.3:
   version "1.1.3"
@@ -3611,10 +3597,10 @@ isstream@~0.1.2:
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
-istanbul-api@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-3.0.0.tgz#eca53a6d3995eb39d59f2a9c1ee7071877770550"
-  integrity sha512-6KTQT5osUuuDT1ybWvrzJIXljrzDiZTHLxUkEr6WY1lAO2Q3PzZCH5+gSAEOaUhJf+qbaC79rQyCNeHGB6+6gw==
+istanbul-api@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-2.1.6.tgz#d61702a9d1c66ad89d92e66d401e16b0bda4a35f"
+  integrity sha512-x0Eicp6KsShG1k1rMgBAi/1GgY7kFGEBwQpw3PXGEmu+rBcBNhqU8g2DgY9mlepAsLPzrzrbqSgCGANnki4POA==
   dependencies:
     async "^2.6.2"
     compare-versions "^3.4.0"
@@ -3624,12 +3610,11 @@ istanbul-api@^3.0.0:
     istanbul-lib-instrument "^3.3.0"
     istanbul-lib-report "^2.0.8"
     istanbul-lib-source-maps "^3.0.6"
-    istanbul-reports "^2.2.5"
+    istanbul-reports "^2.2.4"
     js-yaml "^3.13.1"
     make-dir "^2.1.0"
     minimatch "^3.0.4"
     once "^1.4.0"
-    semver "^6.0.0"
 
 istanbul-lib-coverage@^2.0.5:
   version "2.0.5"
@@ -3647,13 +3632,6 @@ istanbul-lib-hook@^2.0.7:
   integrity sha512-vrRztU9VRRFDyC+aklfLoeXyNdTfga2EI3udDGn4cZ6fpSXpHLV9X6CHvfoMCPtggg8zvDDmC4b9xfu0z6/llA==
   dependencies:
     append-transform "^1.0.0"
-
-istanbul-lib-hook@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-hook/-/istanbul-lib-hook-3.0.0.tgz#8f84c9434888cc6b1d0a9d7092a76d239ebf0cc6"
-  integrity sha512-Pt/uge1Q9s+5VAZ+pCo16TYMWPBIl+oaNIjgLQxcX0itS6ueeaA+pEfThZpH8WxhFgCiEb8sAJY6MdUKgiIWaQ==
-  dependencies:
-    append-transform "^2.0.0"
 
 istanbul-lib-instrument@^3.3.0:
   version "3.3.0"
@@ -3690,15 +3668,6 @@ istanbul-lib-report@^2.0.8:
     make-dir "^2.1.0"
     supports-color "^6.1.0"
 
-istanbul-lib-report@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-3.0.0.tgz#7518fe52ea44de372f460a76b5ecda9ffb73d8a6"
-  integrity sha512-wcdi+uAKzfiGT2abPpKZ0hSU1rGQjUQnLvtY5MpQ7QCTahD3VODhcu4wcfY1YtkGaDD5yuydOLINXsfbus9ROw==
-  dependencies:
-    istanbul-lib-coverage "^3.0.0"
-    make-dir "^3.0.0"
-    supports-color "^7.1.0"
-
 istanbul-lib-source-maps@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-3.0.6.tgz#284997c48211752ec486253da97e3879defba8c8"
@@ -3710,29 +3679,12 @@ istanbul-lib-source-maps@^3.0.6:
     rimraf "^2.6.3"
     source-map "^0.6.1"
 
-istanbul-lib-source-maps@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-4.0.0.tgz#75743ce6d96bb86dc7ee4352cf6366a23f0b1ad9"
-  integrity sha512-c16LpFRkR8vQXyHZ5nLpY35JZtzj1PQY1iZmesUbf1FZHbIupcWfjgOXBY9YHkLEQ6puz1u4Dgj6qmU/DisrZg==
-  dependencies:
-    debug "^4.1.1"
-    istanbul-lib-coverage "^3.0.0"
-    source-map "^0.6.1"
-
-istanbul-reports@^2.2.5:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-2.2.6.tgz#7b4f2660d82b29303a8fe6091f8ca4bf058da1af"
-  integrity sha512-SKi4rnMyLBKe0Jy2uUdx28h8oG7ph2PPuQPvIAh31d+Ci+lSiEu4C+h3oBPuJ9+mPKhOyW0M8gY4U5NM1WLeXA==
-  dependencies:
-    handlebars "^4.1.2"
-
-istanbul-reports@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-3.0.0.tgz#d4d16d035db99581b6194e119bbf36c963c5eb70"
-  integrity sha512-2osTcC8zcOSUkImzN2EWQta3Vdi4WjjKw99P2yWx5mLnigAM0Rd5uYFn1cf2i/Ois45GkNjaoTqc5CxgMSX80A==
+istanbul-reports@^2.2.4, istanbul-reports@^2.2.6:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-2.2.7.tgz#5d939f6237d7b48393cc0959eab40cd4fd056931"
+  integrity sha512-uu1F/L1o5Y6LzPVSVZXNOoD/KXpJue9aeLRd0sM9uMXfZvzomB0WxVamWb5ue8kA2vVWEmW7EG+A5n3f1kqHKg==
   dependencies:
     html-escaper "^2.0.0"
-    istanbul-lib-report "^3.0.0"
 
 iterall@^1.2.2:
   version "1.2.2"
@@ -6038,11 +5990,6 @@ strip-bom@^3.0.0:
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
   integrity sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=
 
-strip-bom@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-4.0.0.tgz#9c3505c1db45bcedca3d9cf7a16f5c5aa3901878"
-  integrity sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==
-
 strip-indent@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-1.0.1.tgz#0c7962a6adefa7bbd4ac366460a638552ae1a0a2"
@@ -6309,10 +6256,10 @@ typescript@^3.5.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
   integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
-"uWebSockets.js@github:uNetworking/uWebSockets.js#v17.0.0":
-  version "17.0.0"
-  uid e7afaaf5c96311578b3c4477f662d02aab2e41ec
-  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/e7afaaf5c96311578b3c4477f662d02aab2e41ec"
+"uWebSockets.js@github:uNetworking/uWebSockets.js#v17.1.0":
+  version "17.1.0"
+  uid "5b524b61b25c78325304a71f810dfdfaa7f5e5eb"
+  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/5b524b61b25c78325304a71f810dfdfaa7f5e5eb"
 
 uglify-js@3.4.x:
   version "3.4.10"
